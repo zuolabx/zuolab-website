@@ -209,15 +209,15 @@ function Work() {
   return (
     <section id="work" className="border-b border-foreground/[0.35]">
       <SectionHeader label="Services" />
-      <div className="grid md:grid-cols-3">
+      <div className="grid md:grid-cols-3 items-stretch">
         {services.map((service, i) => (
           <AnimateIn key={service.title} delay={i * 0.08}>
-            <div className={`group h-full p-6 flex flex-col ${i < 2 ? "border-r border-foreground/[0.35]" : ""}`}>
-              <span className="text-[10px] text-foreground/20 mb-4 block tracking-[0.15em]">
+            <div className={`group h-full min-h-[320px] py-12 px-8 flex flex-col ${i < 2 ? "border-r border-foreground/[0.35]" : ""}`}>
+              <span className="text-[10px] text-foreground/20 mb-8 block tracking-[0.15em]">
                 {service.num}
               </span>
-              <h3 className="text-[15px] font-medium mb-3" style={alphaLyrae}>{service.title}</h3>
-              <p className="text-foreground/40 leading-[1.7] mb-6 flex-1 text-[12px]">
+              <h3 className="text-[15px] font-medium mb-5" style={alphaLyrae}>{service.title}</h3>
+              <p className="text-foreground/40 leading-[1.7] mb-10 flex-1 text-[12px]">
                 {service.description}
               </p>
               <a
@@ -262,13 +262,13 @@ function CaseStudies() {
   return (
     <section id="cases" className="border-b border-foreground/[0.35]">
       <SectionHeader label="Case Studies" />
-      <div className="grid md:grid-cols-3">
+      <div className="grid md:grid-cols-3 items-stretch">
         {projects.map((project, i) => (
           <AnimateIn key={project.title} delay={i * 0.08}>
-            <div className={`group h-full flex flex-col ${i < 2 ? "border-r border-foreground/[0.35]" : ""}`}>
-              <div className="h-28 relative border-b border-foreground/[0.35] flex items-center justify-center">
+            <div className={`group h-full min-h-[480px] flex flex-col ${i < 2 ? "border-r border-foreground/[0.35]" : ""}`}>
+              <div className="h-[160px] relative border-b border-foreground/[0.35] flex items-center justify-center">
                 <motion.svg
-                  className="w-16 h-16 text-foreground/[0.15]"
+                  className="w-16 h-16 text-foreground/[0.12]"
                   viewBox="0 0 100 100"
                   fill="none"
                   stroke="currentColor"
@@ -297,14 +297,14 @@ function CaseStudies() {
                   )}
                 </motion.svg>
               </div>
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center justify-between mb-3">
+              <div className="py-8 px-7 flex flex-col flex-1 border-b border-foreground/[0.15]">
+                <div className="flex items-center justify-between mb-5">
                   <span className="text-[10px] tracking-[0.1em] text-accent">{project.category}</span>
                   <span className="text-[10px] text-foreground/25">{project.date}</span>
                 </div>
-                <h3 className="text-[15px] font-medium mb-2" style={alphaLyrae}>{project.title}</h3>
-                <p className="text-foreground/40 text-[12px] leading-[1.7] mb-5 flex-1">{project.description}</p>
-                <div className="flex flex-wrap gap-2 pt-3 border-t border-foreground/[0.35]">
+                <h3 className="text-[15px] font-medium mb-4" style={alphaLyrae}>{project.title}</h3>
+                <p className="text-foreground/40 text-[12px] leading-[1.7] mb-8 flex-1">{project.description}</p>
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-foreground/[0.35]">
                   {project.tech.map((t) => (
                     <span key={t} className="text-[10px] text-foreground/30 tracking-[0.06em]">
                       {t}
@@ -544,7 +544,7 @@ export default function Home() {
     <>
       {/* Navbar - fixed, has its own container */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0d0d0d]/95 backdrop-blur-sm">
-        <div className="max-w-[1200px] mx-auto flex items-stretch h-11 border-x border-b border-foreground/[0.35]">
+        <div className="w-full flex items-stretch h-11 border-x border-b border-foreground/[0.35]">
           <div className="flex items-center px-5 border-r border-foreground/[0.35]">
             <ZuoLogo />
           </div>
@@ -569,7 +569,7 @@ export default function Home() {
       </nav>
 
       {/* Single container - border-x runs full height */}
-      <div className="max-w-[1200px] mx-auto border-x border-foreground/[0.35] mt-11">
+      <div className="w-full border-x border-foreground/[0.35] mt-11">
         <Hero />
         <Mission />
         <Work />
