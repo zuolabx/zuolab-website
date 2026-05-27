@@ -64,7 +64,6 @@ export default function DemoOne() {
                 <Link href={"/"}>
                   <Button
                     className="h-12 w-46 cursor-pointer rounded-full"
-                    variant="default"
                   >
                     <Vercel />
                     Start Deploying
