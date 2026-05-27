@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 interface Testimonial {
   text: string;
@@ -37,14 +37,14 @@ export const TestimonialsColumn = (props: {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-foreground/[0.02] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
                   <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
-                  <p className="text-[12px] text-foreground/50 leading-[1.7] relative z-10 group-hover/card:text-foreground/70 transition-colors duration-300">{text}</p>
+                  <p className="text-[15px] text-foreground/50 leading-[1.7] relative z-10 group-hover/card:text-foreground/70 transition-colors duration-300">{text}</p>
                   <div className="flex items-center gap-2 mt-4 pt-3 border-t border-foreground/[0.1] relative z-10">
-                    <div className="w-7 h-7 border border-foreground/[0.25] flex items-center justify-center text-[9px] text-foreground/30 font-medium group-hover/card:border-accent/40 group-hover/card:text-accent/60 transition-all duration-300">
+                    <div className="w-9 h-9 border border-foreground/[0.25] flex items-center justify-center text-[12px] text-foreground/30 font-medium group-hover/card:border-accent/40 group-hover/card:text-accent/60 transition-all duration-300">
                       {name.split(" ").map(n => n[0]).join("")}
                     </div>
                     <div className="flex flex-col">
-                      <div className="text-[11px] font-medium leading-tight">{name}</div>
-                      <div className="text-[9px] text-foreground/25 leading-tight tracking-[0.05em]">{role}</div>
+                      <div className="text-[14px] font-medium leading-tight">{name}</div>
+                      <div className="text-[12px] text-foreground/25 leading-tight tracking-[0.05em]">{role}</div>
                     </div>
                   </div>
                 </div>
