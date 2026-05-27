@@ -80,7 +80,7 @@ function SectionHeader({ label }: { label: string }) {
 
 function Hero() {
   return (
-    <section className="relative min-h-[70vh] flex flex-col justify-center bg-[#0d0d10] -mx-px overflow-hidden">
+    <section className="relative min-h-[85vh] md:min-h-[70vh] flex flex-col justify-center bg-[#0d0d10] -mx-px overflow-hidden pb-8 md:pb-0">
       <AnimatedGradientBackground
         Breathing={true}
         startingGap={140}
@@ -104,15 +104,19 @@ function Hero() {
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-        className="absolute inset-0 pointer-events-none z-[2] opacity-30 md:opacity-40"
+        className="absolute inset-0 pointer-events-none z-[2] opacity-20 md:opacity-40"
       >
         <Image
-          src="/herodemo.jpg"
+          src="/herodemo2.jpg"
           alt="Hero"
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
         />
+        {/* Rough texture overlay */}
+        <div className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+        }} />
       </motion.div>
 
       {/* Grid overlay */}
@@ -149,45 +153,128 @@ function Hero() {
   );
 }
 
-function Mission() {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const x1 = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
-  const x2 = useTransform(scrollYProgress, [0, 1], ["8%", "18%"]);
-  const x3 = useTransform(scrollYProgress, [0, 1], ["16%", "35%"]);
-
+function Benefits() {
   return (
-    <section ref={sectionRef} className="border-b border-foreground/[0.35] overflow-x-clip">
-      <SectionHeader label="Mission" />
-      <div className="py-20 px-6 relative">
-        <motion.div style={{ x: x1 }} className="mb-14 ml-[5%] md:ml-[10%]">
-          <AnimateIn>
-            <p className="text-[18px] text-foreground/50 leading-[1.8] max-w-[320px] text-right">
-              ZuoLab exists to close the gap between ambition and execution. Software cannot be built with generic approaches.
-            </p>
-          </AnimateIn>
-        </motion.div>
+    <section className="border-b border-foreground/[0.35]">
+      <SectionHeader label="Why work with us" />
+      <div className="grid grid-cols-2 md:grid-cols-4">
+        {/* Main hero tile */}
+        <div className="col-span-2 row-span-2 border-r border-b border-foreground/[0.35] p-8 md:p-10 flex flex-col justify-between min-h-[320px] md:min-h-[400px] relative overflow-hidden">
+          {/* Background image with texture */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/herodemo.jpg"
+              alt="Ship fast and scale smarter"
+              fill
+              className="object-cover object-center opacity-25"
+            />
+            {/* Rough texture overlay */}
+            <div className="absolute inset-0 opacity-[0.2] mix-blend-overlay pointer-events-none" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+            }} />
+          </div>
 
-        <motion.div style={{ x: x2 }} className="mb-14 ml-[15%] md:ml-[25%]">
-          <AnimateIn delay={0.1}>
-            <p className="text-[18px] text-foreground/50 leading-[1.8] max-w-[320px] text-right">
-              Every product has unique constraints, user expectations, and scaling challenges that demand first-principles thinking. We go deep so you can ship fast.
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-4" style={{ fontFamily: "var(--font-serif)" }}>
+              ship faster.<br />
+              scale smarter.
+            </h2>
+            <p className="text-foreground/50 text-[15px] md:text-[16px] leading-[1.7] max-w-md">
+              from zero to production in weeks. built-in analytics, feature flags, and performance optimization. ready for growth from day one.
             </p>
-          </AnimateIn>
-        </motion.div>
+          </div>
+          <div className="flex gap-3 mt-6 relative z-10">
+            <a href="mailto:hello@zuolab.com" className="inline-flex items-center px-5 py-2.5 bg-accent text-[#0d0d0d] text-[14px] hover:bg-accent/90 transition-colors" style={alphaLyrae}>
+              start project
+            </a>
+            <a href="#work" className="inline-flex items-center px-5 py-2.5 border border-foreground/[0.3] text-[14px] hover:border-foreground/[0.5] transition-colors" style={alphaLyrae}>
+              view services
+            </a>
+          </div>
+        </div>
 
-        <motion.div style={{ x: x3 }} className="ml-[30%] md:ml-[40%]">
-          <AnimateIn delay={0.2}>
-            <p className="text-[17px] text-foreground/30 leading-[1.8] max-w-[280px] text-right italic" style={{ fontFamily: "var(--font-serif)" }}>
-              Not a body shop. A team of domain experts<br />
-              custom-built for your product.
-            </p>
-          </AnimateIn>
-        </motion.div>
+        {/* Chart 1 - Time to Market Bar */}
+        <div className="border-r border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
+          <span className="text-[11px] text-foreground/40 tracking-[0.1em]" style={alphaLyrae}>time to market</span>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-foreground/40 w-12">typical</span>
+              <div className="flex-1 h-2 bg-foreground/10 relative overflow-hidden">
+                <div className="absolute inset-0 bg-foreground/30 w-full" />
+              </div>
+              <span className="text-[10px] text-foreground/50">16w</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-foreground/40 w-12">zuolab</span>
+              <div className="flex-1 h-2 bg-foreground/10 relative overflow-hidden">
+                <div className="absolute inset-0 bg-accent transition-all duration-1000 ease-out" style={{
+                  width: '30%',
+                  animation: 'barGrow 4s ease-in-out infinite'
+                }} />
+              </div>
+              <span className="text-[10px] text-accent font-medium">4w</span>
+            </div>
+          </div>
+          <p className="text-[12px] text-foreground/50 mt-2">4x faster launches</p>
+        </div>
+
+        {/* Chart 2 - Growth Curve */}
+        <div className="border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
+          <span className="text-[11px] text-foreground/40 tracking-[0.1em]" style={alphaLyrae}>user growth</span>
+          <div className="h-16 flex items-end gap-0.5">
+            {[12, 18, 28, 45, 72, 95, 98, 100].map((height, i) => (
+              <div
+                key={i}
+                className="flex-1 bg-accent/20 hover:bg-accent transition-all duration-700 ease-out"
+                style={{
+                  height: `${height}%`,
+                  animation: `barRise 3s ease-out infinite`,
+                  animationDelay: `${i * 0.15}s`
+                }}
+              />
+            ))}
+          </div>
+          <p className="text-[12px] text-foreground/50 mt-2">10x velocity spike</p>
+        </div>
+
+        {/* Chart 3 - Performance Score */}
+        <div className="border-r border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
+          <span className="text-[11px] text-foreground/40 tracking-[0.1em]" style={alphaLyrae}>performance</span>
+          <div className="relative">
+            <svg viewBox="0 0 100 50" className="w-full h-16">
+              <path d="M 5 45 Q 25 35, 50 15 T 95 5" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent opacity-30" />
+              <path d="M 5 45 Q 25 35, 50 15 T 95 5" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent" strokeDasharray="200" strokeDashoffset="0">
+                <animate attributeName="stroke-dashoffset" from="200" to="0" dur="2s" fill="freeze" />
+              </path>
+              <circle cx="95" cy="5" r="2" className="fill-accent" />
+            </svg>
+          </div>
+          <p className="text-[12px] text-foreground/50">99/100 lighthouse</p>
+        </div>
+
+        {/* Chart 4 - Cost Reduction */}
+        <div className="border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
+          <span className="text-[11px] text-foreground/40 tracking-[0.1em]" style={alphaLyrae}>cost per user</span>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-[10px]">
+              <span className="text-foreground/40">before</span>
+              <span className="text-foreground/50">$8.50</span>
+            </div>
+            <div className="w-full h-8 bg-foreground/5 relative overflow-hidden">
+              <div className="absolute inset-y-0 left-0 bg-foreground/20 w-full" />
+              <div className="absolute inset-y-0 left-0 bg-accent transition-all duration-1000 ease-out" style={{
+                width: '40%',
+                animation: 'barShrink 4s ease-in-out infinite'
+              }} />
+            </div>
+            <div className="flex items-center justify-between text-[10px]">
+              <span className="text-foreground/40">after</span>
+              <span className="text-accent font-medium">$3.40</span>
+            </div>
+          </div>
+          <p className="text-[12px] text-foreground/50">-60% savings</p>
+        </div>
+
       </div>
     </section>
   );
@@ -386,28 +473,31 @@ function Team() {
       role: "Infrastructure Architect",
       image: "https://avatars.githubusercontent.com/sahilnyk",
       twitter: "https://x.com/sahilnyk",
+      bio: "scaled systems to millions of users. expert in cloud architecture, kubernetes, and performance optimization. builds infrastructure that doesn't break.",
     },
     {
       name: "Anshuman Praharaj",
       role: "Full-stack Systems Engineer",
       image: "https://avatars.githubusercontent.com/u/103830605?v=4",
       twitter: "#",
+      bio: "full-stack generalist. ships features fast. from database queries to pixel-perfect UI. makes complex systems feel simple.",
     },
     {
       name: "Aditya Petkar",
       role: "Applied Ai Engineer",
       image: "https://avatars.githubusercontent.com/u/183547965?v=4",
       twitter: "#",
+      bio: "builds AI that works in production. RAG pipelines, fine-tuning, and agentic workflows. no demos, only deployments.",
     },
   ];
 
   return (
     <section id="team" className="border-b border-foreground/[0.35]">
-      <SectionHeader label="Team" />
+      <SectionHeader label="Small team high productive!" />
       <div className="grid grid-cols-1 md:grid-cols-3">
         {members.map((member, i) => (
           <AnimateIn key={member.name} delay={i * 0.1}>
-            <div className={`group ${i < 2 ? "border-r border-foreground/[0.35]" : ""}`}>
+            <div className={`group ${i < 2 ? "border-r border-foreground/[0.35]" : ""} relative`}>
               <div className="aspect-square relative overflow-hidden">
                 <img
                   alt={member.name}
@@ -417,7 +507,15 @@ function Team() {
                 <div className="absolute inset-0 vertical-scan pointer-events-none" />
                 <div className="absolute inset-0 scan-lines pointer-events-none opacity-30" />
                 <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-[#0d0d0d] to-transparent" />
-                <div className="absolute bottom-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+
+                {/* Bio overlay on hover */}
+                <div className="absolute inset-0 bg-[#0d0d0d]/95 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
+                  <p className="text-[13px] md:text-[14px] text-foreground/80 leading-[1.7] text-center">
+                    {member.bio}
+                  </p>
+                </div>
+
+                <div className="absolute bottom-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 z-10">
                   <a
                     href={member.twitter}
                     className="w-7 h-7 flex items-center justify-center border border-foreground/[0.35] text-foreground/60 hover:text-foreground hover:border-foreground/50 transition-all bg-[#0d0d0d]/60 backdrop-blur-sm"
@@ -554,23 +652,23 @@ export default function Home() {
           <div className="flex items-center px-3 sm:px-5 border-r border-foreground/[0.35]">
             <ZuoLogo />
           </div>
-          <div className="flex-1 flex items-center justify-center gap-4 sm:gap-10 px-2 sm:px-5 border-r border-foreground/[0.35]">
-            <a href="#work" className="group text-[13px] sm:text-[15px]" style={alphaLyrae}>
+          <div className="flex-1 flex items-center justify-center gap-3 sm:gap-10 px-2 sm:px-5 border-r border-foreground/[0.35]">
+            <a href="#work" className="group text-[12px] sm:text-[15px]" style={alphaLyrae}>
               <CharHover text="Services" />
             </a>
-            <a href="#cases" className="group text-[13px] sm:text-[15px]" style={alphaLyrae}>
+            <a href="#cases" className="group text-[12px] sm:text-[15px]" style={alphaLyrae}>
               <CharHover text="Work" />
             </a>
-            <a href="#team" className="group text-[13px] sm:text-[15px]" style={alphaLyrae}>
+            <a href="#team" className="group text-[12px] sm:text-[15px]" style={alphaLyrae}>
               <CharHover text="Team" />
             </a>
           </div>
           <a
             href="mailto:hello@zuolab.com"
-            className="hidden sm:flex items-center px-5 text-[17px] text-foreground hover:text-[#0d0d0d] transition-colors duration-300 relative overflow-hidden group"
+            className="flex items-center px-2 sm:px-5 text-[12px] sm:text-[17px] text-foreground hover:text-[#0d0d0d] transition-colors duration-300 relative overflow-hidden group"
             style={alphaLyrae}
           >
-            <span className="relative z-10">Talk to Us</span>
+            <span className="relative z-10 whitespace-nowrap">Talk to Us</span>
             <span className="absolute inset-0 bg-accent scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
           </a>
         </div>
@@ -579,7 +677,7 @@ export default function Home() {
       {/* Single container - border-x runs full height */}
       <div className="w-full border-x border-foreground/[0.35] mt-11">
         <Hero />
-        <Mission />
+        <Benefits />
         <Work />
         <FAQs />
         <Attestations />

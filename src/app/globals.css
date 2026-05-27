@@ -176,3 +176,31 @@ body {
     transform: translateX(100%);
   }
 }
+
+/* Chart animations */
+@keyframes barGrow {
+  0%, 100% {
+    width: 30%;
+  }
+  50% {
+    width: 35%;
+  }
+}
+
+@keyframes barRise {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.08);
+  }
+}
+
+@keyframes barShrink {
+  0%, 100% {
+    width: 40%;
+  }
+  50% {
+    width: 35%;
+  }
+}
