@@ -16,7 +16,15 @@ import {
 const alphaLyrae = { fontFamily: "'Alpha Lyrae', sans-serif" };
 const cardo = { fontFamily: "'Cardo', serif" };
 
-function AnimateIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+function AnimateIn({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   return (
@@ -32,7 +40,13 @@ function AnimateIn({ children, className = "", delay = 0 }: { children: React.Re
   );
 }
 
-function CharHover({ text, className = "" }: { text: string; className?: string }) {
+function CharHover({
+  text,
+  className = "",
+}: {
+  text: string;
+  className?: string;
+}) {
   return (
     <span className={`inline-flex ${className}`}>
       {text.split("").map((char, i) => (
@@ -51,9 +65,26 @@ function CharHover({ text, className = "" }: { text: string; className?: string 
 function ZuoLogo() {
   return (
     <div className="flex items-center gap-2">
-      <svg className="h-5 w-5" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="1" width="34" height="34" stroke="currentColor" strokeWidth="1" />
-        <path d="M9 11h18L9 25h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+      <svg
+        className="h-5 w-5"
+        viewBox="0 0 36 36"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          x="1"
+          y="1"
+          width="34"
+          height="34"
+          stroke="currentColor"
+          strokeWidth="1"
+        />
+        <path
+          d="M9 11h18L9 25h18"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="square"
+        />
       </svg>
       <span className="text-[13px] tracking-[0.05em]" style={alphaLyrae}>
         Zuo<span className="text-accent">lab</span>
@@ -62,12 +93,14 @@ function ZuoLogo() {
   );
 }
 
-
 function SectionHeader({ label }: { label: string }) {
   return (
     <div className="flex items-stretch border-y border-foreground/[0.35]">
       <div className="flex items-center px-5 py-2.5 border-r border-foreground/[0.35] shrink-0 bg-[#1a1a1a]">
-        <span className="text-[11px] tracking-[0.1em] text-foreground/50" style={alphaLyrae}>
+        <span
+          className="text-[11px] tracking-[0.1em] text-foreground/50"
+          style={alphaLyrae}
+        >
           {label}
         </span>
       </div>
@@ -114,18 +147,27 @@ function Hero() {
           priority
         />
         {/* Rough texture overlay */}
-        <div className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-        }} />
+        <div
+          className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
       </motion.div>
 
       {/* Grid overlay */}
       <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-8 pointer-events-none opacity-30">
         {Array.from({ length: 8 }).map((_, idx) => (
-          <div key={idx} className="border-l border-foreground/20 first:border-l-0 last:border-r hidden md:block" />
+          <div
+            key={idx}
+            className="border-l border-foreground/20 first:border-l-0 last:border-r hidden md:block"
+          />
         ))}
         {Array.from({ length: 4 }).map((_, idx) => (
-          <div key={`mobile-${idx}`} className="border-l border-foreground/20 first:border-l-0 last:border-r md:hidden" />
+          <div
+            key={`mobile-${idx}`}
+            className="border-l border-foreground/20 first:border-l-0 last:border-r md:hidden"
+          />
         ))}
       </div>
 
@@ -135,19 +177,28 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-[#f2efe6] tracking-[-0.02em] max-w-[1100px]"
-          style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(40px, 9vw, 120px)", lineHeight: "1.08" }}
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "clamp(40px, 9vw, 120px)",
+            lineHeight: "1.08",
+          }}
         >
           <span className="block" style={{ marginLeft: "0%" }}>
             Assumptions
           </span>
-          <span className="block" style={{ marginLeft: "clamp(45%, 55%, 65%)" }}>
+          <span
+            className="block"
+            style={{ marginLeft: "clamp(45%, 55%, 65%)" }}
+          >
             Kill
           </span>
-          <span className="block" style={{ marginLeft: "clamp(60%, 70%, 78%)" }}>
+          <span
+            className="block"
+            style={{ marginLeft: "clamp(60%, 70%, 78%)" }}
+          >
             Products.
           </span>
         </motion.h1>
-
       </div>
     </section>
   );
@@ -169,25 +220,42 @@ function Benefits() {
               className="object-cover object-center opacity-25"
             />
             {/* Rough texture overlay */}
-            <div className="absolute inset-0 opacity-[0.2] mix-blend-overlay pointer-events-none" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-            }} />
+            <div
+              className="absolute inset-0 opacity-[0.2] mix-blend-overlay pointer-events-none"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              }}
+            />
           </div>
 
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-4" style={{ fontFamily: "var(--font-serif)" }}>
-              ship faster.<br />
+            <h2
+              className="text-3xl md:text-5xl font-medium tracking-tight mb-4"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              ship faster.
+              <br />
               scale smarter.
             </h2>
             <p className="text-foreground/50 text-[15px] md:text-[16px] leading-[1.7] max-w-md">
-              from zero to production in weeks. built-in analytics, feature flags, and performance optimization. ready for growth from day one.
+              from zero to production in weeks. built-in analytics, feature
+              flags, and performance optimization. ready for growth from day
+              one.
             </p>
           </div>
           <div className="flex gap-3 mt-6 relative z-10">
-            <a href="mailto:hello@zuolab.com" className="inline-flex items-center px-5 py-2.5 bg-accent text-[#0d0d0d] text-[14px] hover:bg-accent/90 transition-colors" style={alphaLyrae}>
+            <a
+              href="mailto:hello@zuolab.com"
+              className="inline-flex items-center px-5 py-2.5 bg-accent text-[#0d0d0d] text-[14px] hover:bg-accent/90 transition-colors"
+              style={alphaLyrae}
+            >
               start project
             </a>
-            <a href="#work" className="inline-flex items-center px-5 py-2.5 border border-foreground/[0.3] text-[14px] hover:border-foreground/[0.5] transition-colors" style={alphaLyrae}>
+            <a
+              href="#work"
+              className="inline-flex items-center px-5 py-2.5 border border-foreground/[0.3] text-[14px] hover:border-foreground/[0.5] transition-colors"
+              style={alphaLyrae}
+            >
               view services
             </a>
           </div>
@@ -195,32 +263,51 @@ function Benefits() {
 
         {/* Chart 1 - Time to Market Bar */}
         <div className="border-r border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
-          <span className="text-[11px] text-foreground/40 tracking-[0.1em]" style={alphaLyrae}>time to market</span>
+          <span
+            className="text-[11px] text-foreground/40 tracking-[0.1em]"
+            style={alphaLyrae}
+          >
+            time to market
+          </span>
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] text-foreground/40 w-12">typical</span>
+              <span className="text-[10px] text-foreground/40 w-12">
+                typical
+              </span>
               <div className="flex-1 h-2 bg-foreground/10 relative overflow-hidden">
                 <div className="absolute inset-0 bg-foreground/30 w-full" />
               </div>
               <span className="text-[10px] text-foreground/50">16w</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] text-foreground/40 w-12">zuolab</span>
+              <span className="text-[10px] text-foreground/40 w-12">
+                zuolab
+              </span>
               <div className="flex-1 h-2 bg-foreground/10 relative overflow-hidden">
-                <div className="absolute inset-0 bg-accent transition-all duration-1000 ease-out" style={{
-                  width: '30%',
-                  animation: 'barGrow 4s ease-in-out infinite'
-                }} />
+                <div
+                  className="absolute inset-0 bg-accent transition-all duration-1000 ease-out"
+                  style={{
+                    width: "30%",
+                    animation: "barGrow 4s ease-in-out infinite",
+                  }}
+                />
               </div>
               <span className="text-[10px] text-accent font-medium">4w</span>
             </div>
           </div>
-          <p className="text-[12px] text-foreground/50 mt-2">4x faster launches</p>
+          <p className="text-[12px] text-foreground/50 mt-2">
+            4x faster launches
+          </p>
         </div>
 
         {/* Chart 2 - Growth Curve */}
         <div className="border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
-          <span className="text-[11px] text-foreground/40 tracking-[0.1em]" style={alphaLyrae}>user growth</span>
+          <span
+            className="text-[11px] text-foreground/40 tracking-[0.1em]"
+            style={alphaLyrae}
+          >
+            user growth
+          </span>
           <div className="h-16 flex items-end gap-0.5">
             {[12, 18, 28, 45, 72, 95, 98, 100].map((height, i) => (
               <div
@@ -229,22 +316,49 @@ function Benefits() {
                 style={{
                   height: `${height}%`,
                   animation: `barRise 3s ease-out infinite`,
-                  animationDelay: `${i * 0.15}s`
+                  animationDelay: `${i * 0.15}s`,
                 }}
               />
             ))}
           </div>
-          <p className="text-[12px] text-foreground/50 mt-2">10x velocity spike</p>
+          <p className="text-[12px] text-foreground/50 mt-2">
+            10x velocity spike
+          </p>
         </div>
 
         {/* Chart 3 - Performance Score */}
         <div className="border-r border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
-          <span className="text-[11px] text-foreground/40 tracking-[0.1em]" style={alphaLyrae}>performance</span>
+          <span
+            className="text-[11px] text-foreground/40 tracking-[0.1em]"
+            style={alphaLyrae}
+          >
+            performance
+          </span>
           <div className="relative">
             <svg viewBox="0 0 100 50" className="w-full h-16">
-              <path d="M 5 45 Q 25 35, 50 15 T 95 5" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent opacity-30" />
-              <path d="M 5 45 Q 25 35, 50 15 T 95 5" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent" strokeDasharray="200" strokeDashoffset="0">
-                <animate attributeName="stroke-dashoffset" from="200" to="0" dur="2s" fill="freeze" />
+              <path
+                d="M 5 45 Q 25 35, 50 15 T 95 5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="text-accent opacity-30"
+              />
+              <path
+                d="M 5 45 Q 25 35, 50 15 T 95 5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="text-accent"
+                strokeDasharray="200"
+                strokeDashoffset="0"
+              >
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="200"
+                  to="0"
+                  dur="2s"
+                  fill="freeze"
+                />
               </path>
               <circle cx="95" cy="5" r="2" className="fill-accent" />
             </svg>
@@ -254,7 +368,12 @@ function Benefits() {
 
         {/* Chart 4 - Cost Reduction */}
         <div className="border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
-          <span className="text-[11px] text-foreground/40 tracking-[0.1em]" style={alphaLyrae}>cost per user</span>
+          <span
+            className="text-[11px] text-foreground/40 tracking-[0.1em]"
+            style={alphaLyrae}
+          >
+            cost per user
+          </span>
           <div className="space-y-2">
             <div className="flex items-center justify-between text-[10px]">
               <span className="text-foreground/40">before</span>
@@ -262,10 +381,13 @@ function Benefits() {
             </div>
             <div className="w-full h-8 bg-foreground/5 relative overflow-hidden">
               <div className="absolute inset-y-0 left-0 bg-foreground/20 w-full" />
-              <div className="absolute inset-y-0 left-0 bg-accent transition-all duration-1000 ease-out" style={{
-                width: '40%',
-                animation: 'barShrink 4s ease-in-out infinite'
-              }} />
+              <div
+                className="absolute inset-y-0 left-0 bg-accent transition-all duration-1000 ease-out"
+                style={{
+                  width: "40%",
+                  animation: "barShrink 4s ease-in-out infinite",
+                }}
+              />
             </div>
             <div className="flex items-center justify-between text-[10px]">
               <span className="text-foreground/40">after</span>
@@ -274,7 +396,6 @@ function Benefits() {
           </div>
           <p className="text-[12px] text-foreground/50">-60% savings</p>
         </div>
-
       </div>
     </section>
   );
@@ -285,19 +406,22 @@ function Work() {
     {
       num: "01",
       title: "Saas Development",
-      description: "Full-stack product engineering. From napkin sketch to thousands of paying users. Architecture that scales, code that lasts.",
+      description:
+        "Full-stack product engineering. From napkin sketch to thousands of paying users. Architecture that scales, code that lasts.",
       cta: { label: "Case Studies", href: "#cases" },
     },
     {
       num: "02",
       title: "Technical Consulting",
-      description: "Architecture reviews, performance audits, and hands-on guidance from engineers who've scaled systems to millions.",
+      description:
+        "Architecture reviews, performance audits, and hands-on guidance from engineers who've scaled systems to millions.",
       cta: { label: "Talk to Us", href: "mailto:hello@zuolab.com" },
     },
     {
       num: "03",
       title: "Ai Integration",
-      description: "Custom models, RAG pipelines, and agentic workflows that work in production - not just demos.",
+      description:
+        "Custom models, RAG pipelines, and agentic workflows that work in production - not just demos.",
       cta: { label: "Talk to Us", href: "mailto:hello@zuolab.com" },
     },
   ];
@@ -308,11 +432,15 @@ function Work() {
       <div className="grid md:grid-cols-3 items-stretch">
         {services.map((service, i) => (
           <AnimateIn key={service.title} delay={i * 0.08}>
-            <div className={`group h-full min-h-[320px] py-12 px-8 flex flex-col ${i < 2 ? "border-r border-foreground/[0.35]" : ""}`}>
+            <div
+              className={`group h-full min-h-[320px] py-12 px-8 flex flex-col ${i < 2 ? "border-r border-foreground/[0.35]" : ""}`}
+            >
               <span className="text-[10px] text-foreground/20 mb-8 block tracking-[0.15em]">
                 {service.num}
               </span>
-              <h3 className="text-[19px] font-medium mb-5" style={alphaLyrae}>{service.title}</h3>
+              <h3 className="text-[19px] font-medium mb-5" style={alphaLyrae}>
+                {service.title}
+              </h3>
               <p className="text-foreground/40 leading-[1.7] mb-10 flex-1 text-[16px]">
                 {service.description}
               </p>
@@ -320,8 +448,12 @@ function Work() {
                 href={service.cta.href}
                 className="group relative inline-flex items-center text-accent text-[15px] tracking-[0.08em] transition-all hover:pl-2"
               >
-                <span className="absolute left-0 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                <span className="group-hover:text-foreground transition-colors">{service.cta.label}</span>
+                <span className="absolute left-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                  →
+                </span>
+                <span className="group-hover:text-foreground transition-colors">
+                  {service.cta.label}
+                </span>
                 <span className="ml-1 group-hover:ml-2 transition-all">→</span>
               </a>
             </div>
@@ -337,37 +469,46 @@ function FAQs() {
     {
       id: "item-1",
       question: "How long does a typical project take?",
-      answer: "Most projects are delivered within 4-8 weeks, depending on scope. We prioritize speed without cutting corners - you'll see working software in production, not just prototypes.",
+      answer:
+        "Most projects are delivered within 4-8 weeks, depending on scope. We prioritize speed without cutting corners - you'll see working software in production, not just prototypes.",
     },
     {
       id: "item-2",
       question: "Do you work with early-stage startups?",
-      answer: "Yes. We've built MVPs that scaled to thousands of users. If you have product-market fit or a clear vision, we can help you ship fast.",
+      answer:
+        "Yes. We've built MVPs that scaled to thousands of users. If you have product-market fit or a clear vision, we can help you ship fast.",
     },
     {
       id: "item-3",
       question: "What's your tech stack?",
-      answer: "We're stack-agnostic but default to Next.js, React, Node.js, PostgreSQL, and AWS/Vercel. We choose technology based on your constraints, not ours.",
+      answer:
+        "We're stack-agnostic but default to Next.js, React, Node.js, PostgreSQL, and AWS/Vercel. We choose technology based on your constraints, not ours.",
     },
     {
       id: "item-4",
       question: "How do you handle project scope changes?",
-      answer: "We embrace change. If requirements shift mid-project, we re-scope and communicate impact immediately. No surprises, no scope creep drama.",
+      answer:
+        "We embrace change. If requirements shift mid-project, we re-scope and communicate impact immediately. No surprises, no scope creep drama.",
     },
     {
       id: "item-5",
       question: "Do you provide ongoing support after launch?",
-      answer: "Yes. We offer maintenance retainers and on-call support. Most clients keep us around for feature development and infrastructure work.",
+      answer:
+        "Yes. We offer maintenance retainers and on-call support. Most clients keep us around for feature development and infrastructure work.",
     },
     {
       id: "item-6",
       question: "What if we're not technical - can you still work with us?",
-      answer: "Absolutely. We translate product ideas into architecture decisions. You focus on the business, we handle the engineering.",
+      answer:
+        "Absolutely. We translate product ideas into architecture decisions. You focus on the business, we handle the engineering.",
     },
   ];
 
   return (
-    <section id="faq" className="relative w-full flex flex-col justify-center py-8 border-b border-foreground/[0.35]">
+    <section
+      id="faq"
+      className="relative w-full flex flex-col justify-center py-8 border-b border-foreground/[0.35]"
+    >
       <SectionHeader label="FAQ" />
       <div className="w-full py-4">
         <Accordion
@@ -459,8 +600,16 @@ function Attestations() {
       <SectionHeader label="Attestations" />
       <div className="flex justify-center gap-4 py-6 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[500px] overflow-hidden">
         <TestimonialsColumn testimonials={col1} duration={15} />
-        <TestimonialsColumn testimonials={col2} className="hidden md:block" duration={19} />
-        <TestimonialsColumn testimonials={col3} className="hidden lg:block" duration={17} />
+        <TestimonialsColumn
+          testimonials={col2}
+          className="hidden md:block"
+          duration={19}
+        />
+        <TestimonialsColumn
+          testimonials={col3}
+          className="hidden lg:block"
+          duration={17}
+        />
       </div>
     </section>
   );
@@ -497,7 +646,9 @@ function Team() {
       <div className="grid grid-cols-1 md:grid-cols-3">
         {members.map((member, i) => (
           <AnimateIn key={member.name} delay={i * 0.1}>
-            <div className={`group ${i < 2 ? "border-r border-foreground/[0.35]" : ""} relative`}>
+            <div
+              className={`group ${i < 2 ? "border-r border-foreground/[0.35]" : ""} relative`}
+            >
               <div className="aspect-square relative overflow-hidden">
                 <img
                   alt={member.name}
@@ -520,7 +671,11 @@ function Team() {
                     href={member.twitter}
                     className="w-7 h-7 flex items-center justify-center border border-foreground/[0.35] text-foreground/60 hover:text-foreground hover:border-foreground/50 transition-all bg-[#0d0d0d]/60 backdrop-blur-sm"
                   >
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                   </a>
@@ -528,8 +683,18 @@ function Team() {
                     href={`mailto:${member.name.toLowerCase().split(" ")[0]}@zuolab.com`}
                     className="w-7 h-7 flex items-center justify-center border border-foreground/[0.35] text-foreground/60 hover:text-foreground hover:border-foreground/50 transition-all bg-[#0d0d0d]/60 backdrop-blur-sm"
                   >
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                      />
                     </svg>
                   </a>
                 </div>
@@ -557,13 +722,15 @@ function Footer() {
         <div className="md:col-span-2 p-6 border-r border-foreground/[0.35]">
           <ZuoLogo />
           <p className="text-foreground/30 max-w-sm leading-[1.7] text-[15px] mt-4">
-            Software agency for teams who ship. Saas development, technical consulting,
-            and ai integration - from zero to production.
+            Software agency for teams who ship. Saas development, technical
+            consulting, and ai integration - from zero to production.
           </p>
         </div>
 
         <div className="p-6 border-r border-foreground/[0.35]">
-          <h4 className="text-[13px] tracking-[0.1em] mb-4 text-foreground/25">Company</h4>
+          <h4 className="text-[13px] tracking-[0.1em] mb-4 text-foreground/25">
+            Company
+          </h4>
           <ul className="space-y-3">
             <li>
               <a href="#work" className="group text-[14px]" style={alphaLyrae}>
@@ -584,30 +751,79 @@ function Footer() {
         </div>
 
         <div className="p-6">
-          <h4 className="text-[13px] tracking-[0.1em] mb-4 text-foreground/25">Connect</h4>
+          <h4 className="text-[13px] tracking-[0.1em] mb-4 text-foreground/25">
+            Connect
+          </h4>
           <ul className="space-y-3">
             <li>
-              <a href="#" className="group flex items-center gap-3 text-[14px]" style={alphaLyrae}>
-                <svg className="w-4 h-4 text-foreground/70 group-hover:text-accent transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+              <a
+                href="https://x.com/zuolabs"
+                className="group flex items-center gap-3 text-[14px]"
+                style={alphaLyrae}
+              >
+                <svg
+                  className="w-4 h-4 text-foreground/70 group-hover:text-accent transition-colors"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
                 <CharHover text="Twitter / X" />
               </a>
             </li>
             <li>
-              <a href="#" className="group flex items-center gap-3 text-[14px]" style={alphaLyrae}>
-                <svg className="w-4 h-4 text-foreground/70 group-hover:text-accent transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+              <a
+                href="https://github.com/zuolabx"
+                className="group flex items-center gap-3 text-[14px]"
+                style={alphaLyrae}
+              >
+                <svg
+                  className="w-4 h-4 text-foreground/70 group-hover:text-accent transition-colors"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
                 <CharHover text="Github" />
               </a>
             </li>
             <li>
-              <a href="#" className="group flex items-center gap-3 text-[14px]" style={alphaLyrae}>
-                <svg className="w-4 h-4 text-foreground/70 group-hover:text-accent transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+              <a
+                href="#"
+                className="group flex items-center gap-3 text-[14px]"
+                style={alphaLyrae}
+              >
+                {/* LinkedIn URL not provided */}
+                <svg
+                  className="w-4 h-4 text-foreground/70 group-hover:text-accent transition-colors"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
                 <CharHover text="Linkedin" />
               </a>
             </li>
             <li>
-              <a href="mailto:hello@zuolab.com" className="group flex items-center gap-3 text-[14px]" style={alphaLyrae}>
-                <svg className="w-4 h-4 text-foreground/70 group-hover:text-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-                <CharHover text="hello@zuolab.com" />
+              <a
+                href="mailto:zuolabx@gmail.com"
+                className="group flex items-center gap-3 text-[14px]"
+                style={alphaLyrae}
+              >
+                <svg
+                  className="w-4 h-4 text-foreground/70 group-hover:text-accent transition-colors"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                  />
+                </svg>
+                <CharHover text="zuolabx@gmail.com" />
               </a>
             </li>
           </ul>
@@ -633,10 +849,14 @@ function Footer() {
 
       <div className="flex items-stretch">
         <div className="flex-1 flex items-center px-6 py-3 border-r border-foreground/[0.35]">
-          <p className="text-[14px] text-foreground/20 tracking-[0.1em]">© 2025 Zuolab</p>
+          <p className="text-[14px] text-foreground/20 tracking-[0.1em]">
+            © 2025 Zuolab
+          </p>
         </div>
         <div className="flex items-center px-6 py-3">
-          <p className="text-[14px] text-foreground/20 tracking-[0.1em]">Built with obsessive attention to detail</p>
+          <p className="text-[14px] text-foreground/20 tracking-[0.1em]">
+            Built with obsessive attention to detail
+          </p>
         </div>
       </div>
     </footer>
@@ -653,13 +873,25 @@ export default function Home() {
             <ZuoLogo />
           </div>
           <div className="flex-1 flex items-center justify-center gap-3 sm:gap-10 px-2 sm:px-5 border-r border-foreground/[0.35]">
-            <a href="#work" className="group text-[12px] sm:text-[15px]" style={alphaLyrae}>
+            <a
+              href="#work"
+              className="group text-[12px] sm:text-[15px]"
+              style={alphaLyrae}
+            >
               <CharHover text="Services" />
             </a>
-            <a href="#cases" className="group text-[12px] sm:text-[15px]" style={alphaLyrae}>
+            <a
+              href="#cases"
+              className="group text-[12px] sm:text-[15px]"
+              style={alphaLyrae}
+            >
               <CharHover text="Work" />
             </a>
-            <a href="#team" className="group text-[12px] sm:text-[15px]" style={alphaLyrae}>
+            <a
+              href="#team"
+              className="group text-[12px] sm:text-[15px]"
+              style={alphaLyrae}
+            >
               <CharHover text="Team" />
             </a>
           </div>
