@@ -422,7 +422,7 @@ function Work() {
       title: "Ai Integration",
       description:
         "Custom models, RAG pipelines, and agentic workflows that work in production - not just demos.",
-      cta: { label: "Talk to Us", href: "mailto:hello@zuolab.com" },
+      cta: { label: "Talk to Us", href: "https://cal.com/zuolabs/30min" },
     },
   ];
 
