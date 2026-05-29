@@ -628,14 +628,14 @@ function Team() {
       name: "Anshuman Praharaj",
       role: "Fullstack Engineer",
       image: "https://avatars.githubusercontent.com/u/103830605?v=4",
-      twitter: "#",
+      twitter: "https://x.com/anshumancdx",
       bio: "full-stack generalist. ships features fast. from database queries to pixel-perfect UI. makes complex systems feel simple.",
     },
     {
       name: "Aditya Petkar",
       role: "AI Engineer",
       image: "https://avatars.githubusercontent.com/u/183547965?v=4",
-      twitter: "#",
+      twitter: "https://x.com/AdityaPetk50536",
       bio: "builds and integrates AI features for real-world applications. worked with RAG pipelines, LLM integrations, and basic agent workflows. focused on practical implementations and deployment-ready solutions",
     },
   ];
