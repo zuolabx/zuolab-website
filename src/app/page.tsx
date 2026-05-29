@@ -245,7 +245,7 @@ function Benefits() {
           </div>
           <div className="flex gap-3 mt-6 relative z-10">
             <a
-              href="mailto:hello@zuolab.com"
+              href="https://cal.com/zuolabs/30min"
               className="inline-flex items-center px-5 py-2.5 bg-accent text-[#0d0d0d] text-[14px] hover:bg-accent/90 transition-colors"
               style={alphaLyrae}
             >
@@ -415,7 +415,7 @@ function Work() {
       title: "Technical Consulting",
       description:
         "Architecture reviews, performance audits, and hands-on guidance from engineers who've scaled systems to millions.",
-      cta: { label: "Talk to Us", href: "mailto:hello@zuolab.com" },
+      cta: { label: "Talk to Us", href: "https://cal.com/zuolabs/30min" },
     },
     {
       num: "03",
@@ -896,7 +896,7 @@ export default function Home() {
             </a>
           </div>
           <a
-            href="mailto:hello@zuolab.com"
+            href="https://cal.com/zuolabs/30min"
             className="flex items-center px-2 sm:px-5 text-[12px] sm:text-[17px] text-foreground hover:text-[#0d0d0d] transition-colors duration-300 relative overflow-hidden group"
             style={alphaLyrae}
           >
