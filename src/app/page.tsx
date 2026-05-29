@@ -619,29 +619,29 @@ function Team() {
   const members = [
     {
       name: "Sahil Nayak",
-      role: "Infrastructure Architect",
+      role: "Fullstack Engineer",
       image: "https://avatars.githubusercontent.com/sahilnyk",
       twitter: "https://x.com/sahilnyk",
-      bio: "scaled systems to millions of users. expert in cloud architecture, kubernetes, and performance optimization. builds infrastructure that doesn't break.",
+      bio: "built and maintained backend systems for production applications. familiar with cloud infrastructure, Docker, Kubernetes basics, and performance optimization. focused on writing reliable, scalable services and improving system stability.",
     },
     {
       name: "Anshuman Praharaj",
-      role: "Full-stack Systems Engineer",
+      role: "Fullstack Engineer",
       image: "https://avatars.githubusercontent.com/u/103830605?v=4",
       twitter: "#",
       bio: "full-stack generalist. ships features fast. from database queries to pixel-perfect UI. makes complex systems feel simple.",
     },
     {
       name: "Aditya Petkar",
-      role: "Applied Ai Engineer",
+      role: "AI Engineer",
       image: "https://avatars.githubusercontent.com/u/183547965?v=4",
       twitter: "#",
-      bio: "builds AI that works in production. RAG pipelines, fine-tuning, and agentic workflows. no demos, only deployments.",
+      bio: "builds and integrates AI features for real-world applications. worked with RAG pipelines, LLM integrations, and basic agent workflows. focused on practical implementations and deployment-ready solutions",
     },
   ];
 
   return (
-    <section id="team" className="border-b border-foreground/[0.35]">
+    <section id="team" className="border-b border-foreground/35">
       <SectionHeader label="Small team high productive!" />
       <div className="grid grid-cols-1 md:grid-cols-3">
         {members.map((member, i) => (
