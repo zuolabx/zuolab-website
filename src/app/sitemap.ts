@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ?? "https://zuolab.com";
+  process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ?? "https://zuolabs.com";
 
 interface BlogEntry {
   slug: string;
