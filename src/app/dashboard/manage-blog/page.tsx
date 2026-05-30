@@ -3,16 +3,17 @@
 import { useState, useEffect, FormEvent } from "react";
 import dynamic from "next/dynamic";
 
+const alphaLyrae = { fontFamily: "'Alpha Lyrae', sans-serif" };
+
 const TiptapEditor = dynamic(() => import("@/components/cms/TiptapEditor"), {
   ssr: false,
   loading: () => (
-    <div className="min-h-[420px] rounded-sm border border-gray-200 bg-gray-50 flex items-center justify-center">
-      <p className="text-xs text-gray-400">Loading editor…</p>
+    <div className="min-h-[420px] border border-[#f5f5f0]/[0.12] bg-[#1a1a1a] flex items-center justify-center">
+      <p className="text-xs text-[#f5f5f0]/30">Loading editor…</p>
     </div>
   ),
 });
 
-// Types
 interface Blog {
   _id: string;
   title: string;
@@ -26,31 +27,26 @@ interface Blog {
 
 type View = "list" | "create" | "edit";
 
-// Helpers
 function formatDate(iso: string) {
   if (!iso) return "—";
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 }
 
 function Badge({ archived }: { archived: boolean }) {
   return (
     <span
-      className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider ${
+      className={`inline-block px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider ${
         archived
-          ? "bg-amber-50 text-amber-600"
-          : "bg-emerald-50 text-emerald-600"
+          ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+          : "bg-[#6366f1]/10 text-[#6366f1] border border-[#6366f1]/20"
       }`}
+      style={alphaLyrae}
     >
       {archived ? "Archived" : "Live"}
     </span>
   );
 }
 
-// Main page
 export default function ManageBlogPage() {
   const [view, setView] = useState<View>("list");
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -58,15 +54,12 @@ export default function ManageBlogPage() {
   const [error, setError] = useState("");
   const [editingBlog, setEditingBlog] = useState<Blog | null>(null);
 
-  // fetch all blogs (including archived — admin needs to see everything)
   async function fetchBlogs() {
     setLoading(true);
     setError("");
     try {
       const res = await fetch("/api/blog/fetch/all?limit=50");
       const json = await res.json();
-      // fetch/all excludes deleted&archived by default; for admin we fetch separately
-      // We fetch all live + all archived in one go via limit=50
       setBlogs(json.data?.blogs ?? []);
     } catch {
       setError("Failed to load blogs.");
@@ -75,11 +68,8 @@ export default function ManageBlogPage() {
     }
   }
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
+  useEffect(() => { fetchBlogs(); }, []);
 
-  // Delete
   async function handleDelete(slug: string) {
     if (!confirm(`Delete "${slug}"? This cannot be undone.`)) return;
     const res = await fetch("/api/blog/delete", {
@@ -95,7 +85,6 @@ export default function ManageBlogPage() {
     }
   }
 
-  // Toggle archive
   async function handleToggleArchive(blog: Blog) {
     const res = await fetch("/api/blog/update", {
       method: "PATCH",
@@ -103,18 +92,13 @@ export default function ManageBlogPage() {
       body: JSON.stringify({ slug: blog.slug, archived: !blog.archived }),
     });
     if (res.ok) {
-      setBlogs((prev) =>
-        prev.map((b) =>
-          b.slug === blog.slug ? { ...b, archived: !b.archived } : b
-        )
-      );
+      setBlogs((prev) => prev.map((b) => b.slug === blog.slug ? { ...b, archived: !b.archived } : b));
     } else {
       const json = await res.json();
       alert(json.message ?? "Failed to update.");
     }
   }
 
-  // Open edit
   function openEdit(blog: Blog) {
     setEditingBlog(blog);
     setView("edit");
@@ -122,34 +106,37 @@ export default function ManageBlogPage() {
 
   return (
     <div>
-      {/* Page heading + action */}
-      <div className="flex items-center justify-between mb-10">
-        <div>
-          <p className="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 mb-2">
-            Content
-          </p>
-          <h1 className="text-3xl font-semibold text-gray-900 tracking-tight">
+      {/* Section header */}
+      <div className="flex items-stretch border-y border-[#f5f5f0]/[0.12] mb-10">
+        <div className="flex items-center px-4 py-2 border-r border-[#f5f5f0]/[0.12] shrink-0 bg-[#1a1a1a]">
+          <span className="text-[10px] tracking-[0.12em] text-[#f5f5f0]/40" style={alphaLyrae}>
+            CONTENT
+          </span>
+        </div>
+        <div className="flex-1 flex items-center justify-between px-5">
+          <h1 className="text-[15px] font-medium text-[#f5f5f0]/80" style={alphaLyrae}>
             Manage Blogs
           </h1>
+          {view === "list" ? (
+            <button
+              onClick={() => setView("create")}
+              className="text-[12px] text-[#6366f1] hover:text-[#6366f1]/70 transition-colors"
+              style={alphaLyrae}
+            >
+              + New post
+            </button>
+          ) : (
+            <button
+              onClick={() => { setView("list"); setEditingBlog(null); }}
+              className="text-[12px] text-[#f5f5f0]/40 hover:text-[#f5f5f0]/70 transition-colors"
+              style={alphaLyrae}
+            >
+              ← Back to list
+            </button>
+          )}
         </div>
-        {view === "list" ? (
-          <button
-            onClick={() => setView("create")}
-            className="rounded-sm bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 transition-colors"
-          >
-            + New post
-          </button>
-        ) : (
-          <button
-            onClick={() => { setView("list"); setEditingBlog(null); }}
-            className="rounded-sm border border-gray-200 px-4 py-2 text-sm text-gray-600 hover:border-gray-400 transition-colors"
-          >
-            ← Back to list
-          </button>
-        )}
       </div>
 
-      {/* Views */}
       {view === "list" && (
         <BlogList
           blogs={blogs}
@@ -161,10 +148,7 @@ export default function ManageBlogPage() {
         />
       )}
       {view === "create" && (
-        <BlogForm
-          mode="create"
-          onSuccess={() => { fetchBlogs(); setView("list"); }}
-        />
+        <BlogForm mode="create" onSuccess={() => { fetchBlogs(); setView("list"); }} />
       )}
       {view === "edit" && editingBlog && (
         <BlogForm
@@ -177,14 +161,8 @@ export default function ManageBlogPage() {
   );
 }
 
-//Blog List
 function BlogList({
-  blogs,
-  loading,
-  error,
-  onDelete,
-  onToggleArchive,
-  onEdit,
+  blogs, loading, error, onDelete, onToggleArchive, onEdit,
 }: {
   blogs: Blog[];
   loading: boolean;
@@ -193,59 +171,56 @@ function BlogList({
   onToggleArchive: (blog: Blog) => void;
   onEdit: (blog: Blog) => void;
 }) {
-  if (loading) return <p className="text-sm text-gray-400">Loading…</p>;
-  if (error) return <p className="text-sm text-red-500">{error}</p>;
+  if (loading) return <p className="text-sm text-[#f5f5f0]/30">Loading…</p>;
+  if (error) return <p className="text-sm text-red-400">{error}</p>;
   if (blogs.length === 0)
-    return (
-      <p className="text-sm text-gray-400">
-        No posts yet. Create your first one.
-      </p>
-    );
+    return <p className="text-sm text-[#f5f5f0]/30">No posts yet. Create your first one.</p>;
 
   return (
-    <div className="space-y-3">
+    <div className="border border-[#f5f5f0]/[0.08]">
       {blogs.map((blog) => (
         <div
           key={blog._id}
-          className="flex items-center gap-4 rounded-sm border border-gray-100 bg-white px-5 py-4"
+          className="flex items-center gap-4 bg-[#0d0d0d] hover:bg-[#1a1a1a] transition-colors px-5 py-4 border-b border-[#f5f5f0]/[0.06] last:border-b-0"
         >
           {/* Info */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-0.5">
-              <p className="text-sm font-medium text-gray-900 truncate">
-                {blog.title}
-              </p>
+              <p className="text-[14px] font-medium text-[#f5f5f0]/80 truncate">{blog.title}</p>
               <Badge archived={blog.archived} />
             </div>
-            <p className="text-xs text-gray-400 font-mono truncate">
+            <p className="text-[11px] text-[#f5f5f0]/30 truncate" style={{ fontFamily: "var(--font-mono)" }}>
               /blog/{blog.slug}
             </p>
-            <p className="text-xs text-gray-400 mt-0.5">
+            <p className="text-[11px] text-[#f5f5f0]/25 mt-0.5">
               {blog.author} · {formatDate(blog.createdAt)}
             </p>
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-4 shrink-0">
             <button
               onClick={() => onEdit(blog)}
-              className="text-xs text-gray-500 hover:text-gray-900 transition-colors"
+              className="text-[12px] text-[#f5f5f0]/40 hover:text-[#6366f1] transition-colors"
+              style={alphaLyrae}
             >
               Edit
             </button>
             <button
               onClick={() => onToggleArchive(blog)}
-              className={`text-xs transition-colors ${
+              className={`text-[12px] transition-colors ${
                 blog.archived
-                  ? "text-emerald-600 hover:text-emerald-800"
-                  : "text-amber-600 hover:text-amber-800"
+                  ? "text-[#6366f1]/60 hover:text-[#6366f1]"
+                  : "text-amber-500/60 hover:text-amber-400"
               }`}
+              style={alphaLyrae}
             >
               {blog.archived ? "Unarchive" : "Archive"}
             </button>
             <button
               onClick={() => onDelete(blog.slug)}
-              className="text-xs text-red-400 hover:text-red-600 transition-colors"
+              className="text-[12px] text-red-500/40 hover:text-red-400 transition-colors"
+              style={alphaLyrae}
             >
               Delete
             </button>
@@ -256,11 +231,8 @@ function BlogList({
   );
 }
 
-// Blog Form (create + edit)
 function BlogForm({
-  mode,
-  initial,
-  onSuccess,
+  mode, initial, onSuccess,
 }: {
   mode: "create" | "edit";
   initial?: Blog;
@@ -274,13 +246,10 @@ function BlogForm({
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
-  // Auto-generate slug from title only in create mode
   function handleTitleChange(val: string) {
     setTitle(val);
     if (mode === "create") {
-      const generated = val
-        .toLowerCase()
-        .trim()
+      const generated = val.toLowerCase().trim()
         .replace(/[^a-z0-9\s-]/g, "")
         .replace(/\s+/g, "-")
         .slice(0, 100);
@@ -292,42 +261,27 @@ function BlogForm({
     e.preventDefault();
     setError("");
     setSaving(true);
-
     try {
       let res: Response;
-
       if (mode === "create") {
         res = await fetch("/api/blog/create", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            title,
-            slug,
-            author,
-            content,
-            coverImg: coverImg || null,
-          }),
+          body: JSON.stringify({ title, slug, author, content, coverImg: coverImg || null }),
         });
       } else {
         res = await fetch("/api/blog/update", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            slug: initial!.slug,
-            title,
-            author,
-            content,
+            slug: initial!.slug, title, author, content,
             coverImg: coverImg || null,
             ...(slug !== initial!.slug ? { newSlug: slug } : {}),
           }),
         });
       }
-
       const json = await res.json();
-      if (!res.ok) {
-        setError(json.message ?? "Something went wrong.");
-        return;
-      }
+      if (!res.ok) { setError(json.message ?? "Something went wrong."); return; }
       onSuccess();
     } catch {
       setError("Network error. Please try again.");
@@ -336,100 +290,63 @@ function BlogForm({
     }
   }
 
-  const inputCls =
-    "w-full rounded-sm border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-gray-400 transition-colors";
-  const labelCls =
-    "block text-xs uppercase tracking-[0.15em] text-gray-500 mb-1.5";
+  const inputCls = "w-full border border-[#f5f5f0]/[0.12] bg-[#1a1a1a] px-3.5 py-2.5 text-sm text-[#f5f5f0]/80 placeholder-[#f5f5f0]/20 outline-none focus:border-[#6366f1]/50 transition-colors rounded-none";
+  const labelCls = "block text-[10px] uppercase tracking-[0.18em] text-[#f5f5f0]/40 mb-2";
 
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl space-y-6" noValidate>
-      <h2 className="text-xl font-semibold text-gray-900">
+      <h2 className="text-[18px] font-medium text-[#f5f5f0]/80" style={{ fontFamily: "var(--font-serif)" }}>
         {mode === "create" ? "New post" : "Edit post"}
       </h2>
 
       {error && (
-        <div className="rounded-sm border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
           {error}
         </div>
       )}
 
-      {/* Title */}
       <div>
-        <label className={labelCls}>Title</label>
-        <input
-          className={inputCls}
-          value={title}
-          onChange={(e) => handleTitleChange(e.target.value)}
-          placeholder="Post title"
-          required
-        />
+        <label className={labelCls} style={alphaLyrae}>Title</label>
+        <input className={inputCls} value={title} onChange={(e) => handleTitleChange(e.target.value)} placeholder="Post title" required />
       </div>
 
-      {/* Slug */}
       <div>
-        <label className={labelCls}>
-          Slug{" "}
-          <span className="normal-case tracking-normal text-gray-400">
-            (15–50 chars)
-          </span>
+        <label className={labelCls} style={alphaLyrae}>
+          Slug <span className="normal-case tracking-normal text-[#f5f5f0]/25">(15–50 chars)</span>
         </label>
-        <input
-          className={`${inputCls} font-mono text-xs`}
-          value={slug}
-          onChange={(e) => setSlug(e.target.value)}
-          placeholder="my-blog-post-slug-must-be-at-least-30-characters"
-          required
-        />
-        <p className="mt-1 text-xs text-gray-400">{slug.length} / 100</p>
+        <input className={`${inputCls}`} style={{ fontFamily: "var(--font-mono)", fontSize: "12px" }} value={slug} onChange={(e) => setSlug(e.target.value)} placeholder="my-blog-post-slug" required />
+        <p className="mt-1 text-[11px] text-[#f5f5f0]/25">{slug.length} / 100</p>
       </div>
 
-      {/* Author */}
       <div>
-        <label className={labelCls}>Author</label>
-        <input
-          className={inputCls}
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          placeholder="Anshuman"
-          required
-        />
+        <label className={labelCls} style={alphaLyrae}>Author</label>
+        <input className={inputCls} value={author} onChange={(e) => setAuthor(e.target.value)} placeholder="Anshuman" required />
       </div>
 
-      {/* Cover image */}
       <div>
-        <label className={labelCls}>Cover image URL (optional)</label>
-        <input
-          className={inputCls}
-          value={coverImg}
-          onChange={(e) => setCoverImg(e.target.value)}
-          placeholder="https://..."
-          type="url"
-        />
+        <label className={labelCls} style={alphaLyrae}>Cover image URL (optional)</label>
+        <input className={inputCls} value={coverImg} onChange={(e) => setCoverImg(e.target.value)} placeholder="https://..." type="url" />
       </div>
 
-      {/* Content */}
       <div>
-        <label className={labelCls}>Content</label>
+        <label className={labelCls} style={alphaLyrae}>Content</label>
         <TiptapEditor value={content} onChange={setContent} />
       </div>
 
-      {/* Submit */}
       <div className="flex gap-3 pt-2">
         <button
           type="submit"
           disabled={saving}
-          className="rounded-sm bg-gray-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-700 disabled:opacity-50 transition-colors"
+          className="bg-[#6366f1] text-[#0d0d0d] px-5 py-2.5 text-[13px] hover:bg-[#6366f1]/90 disabled:opacity-40 transition-colors"
+          style={alphaLyrae}
         >
-          {saving
-            ? "Saving…"
-            : mode === "create"
-            ? "Publish post"
-            : "Save changes"}
+          {saving ? "Saving…" : mode === "create" ? "Publish post" : "Save changes"}
         </button>
         <button
           type="button"
           onClick={onSuccess}
-          className="rounded-sm border border-gray-200 px-5 py-2.5 text-sm text-gray-600 hover:border-gray-400 transition-colors"
+          className="border border-[#f5f5f0]/[0.12] bg-[#1a1a1a] px-5 py-2.5 text-[13px] text-[#f5f5f0]/50 hover:border-[#f5f5f0]/30 hover:text-[#f5f5f0]/70 transition-colors"
+          style={alphaLyrae}
         >
           Cancel
         </button>

@@ -1,11 +1,10 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import dbConnect from "@/db/dbconnect";
 import { BlogModel } from "@/schemas/blog.schema";
 
-// No ISR — always fresh stats
 export const dynamic = "force-dynamic";
+
+const alphaLyrae = { fontFamily: "'Alpha Lyrae', sans-serif" };
 
 interface Stats {
   total: number;
@@ -17,7 +16,6 @@ interface Stats {
 
 async function getBlogStats(): Promise<Stats> {
   await dbConnect();
-
   const [total, published, archived, deleted, latestDocs] = await Promise.all([
     BlogModel.countDocuments({}),
     BlogModel.countDocuments({ deletedBy: { $exists: false }, archived: { $ne: true } }),
@@ -29,7 +27,6 @@ async function getBlogStats(): Promise<Stats> {
       .limit(5)
       .lean(),
   ]);
-
   return {
     total,
     published,
@@ -45,16 +42,11 @@ async function getBlogStats(): Promise<Stats> {
 
 function formatDate(iso: string) {
   if (!iso) return "—";
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 }
 
 export default async function DashboardPage() {
   const stats = await getBlogStats();
-
   const statCards = [
     { label: "Total Posts", value: stats.total },
     { label: "Published", value: stats.published },
@@ -64,77 +56,62 @@ export default async function DashboardPage() {
 
   return (
     <div>
-      {/* Page heading */}
-      <div className="mb-10">
-        <p className="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 mb-2">
-          Overview
-        </p>
-        <h1 className="text-3xl font-semibold text-gray-900 tracking-tight">
-          Dashboard
-        </h1>
+      {/* Section header */}
+      <div className="flex items-stretch border-y border-[#f5f5f0]/[0.12] mb-10">
+        <div className="flex items-center px-4 py-2 border-r border-[#f5f5f0]/[0.12] shrink-0 bg-[#1a1a1a]">
+          <span className="text-[10px] tracking-[0.12em] text-[#f5f5f0]/40" style={alphaLyrae}>
+            OVERVIEW
+          </span>
+        </div>
+        <div className="flex-1 flex items-center px-5">
+          <h1 className="text-[15px] font-medium text-[#f5f5f0]/80" style={alphaLyrae}>
+            Dashboard
+          </h1>
+        </div>
       </div>
 
       {/* Stat cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-px mb-12 border border-[#f5f5f0]/[0.08] bg-[#f5f5f0]/[0.08]">
         {statCards.map(({ label, value }) => (
-          <div
-            key={label}
-            className="rounded-sm border border-gray-100 bg-white px-5 py-5"
-          >
-            <p className="text-xs uppercase tracking-[0.15em] text-gray-400 mb-2">
+          <div key={label} className="bg-[#0d0d0d] px-5 py-6 flex flex-col gap-2">
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#f5f5f0]/30" style={alphaLyrae}>
               {label}
             </p>
-            <p className="text-4xl font-semibold text-gray-900">{value}</p>
+            <p className="text-4xl font-semibold text-[#f5f5f0] tracking-tight">{value}</p>
           </div>
         ))}
       </div>
 
-      <hr className="border-none h-px bg-gray-100 mb-10" />
+      <div className="h-px bg-[#f5f5f0]/[0.08] mb-10" />
 
       {/* Latest posts */}
       <div>
-        <div className="flex items-center justify-between mb-6">
-          <p className="text-xs uppercase tracking-[0.18em] text-gray-400">
+        <div className="flex items-center justify-between mb-5">
+          <p className="text-[10px] uppercase tracking-[0.18em] text-[#f5f5f0]/30" style={alphaLyrae}>
             Recent Posts
           </p>
-          <Link
-            href="/dashboard/manage-blog"
-            className="text-xs text-gray-500 underline underline-offset-4 decoration-gray-200 hover:text-gray-900 transition-colors"
-          >
+          <Link href="/dashboard/manage-blog" className="text-[12px] text-[#6366f1] hover:text-[#6366f1]/70 transition-colors" style={alphaLyrae}>
             Manage all →
           </Link>
         </div>
 
         {stats.latest.length === 0 ? (
-          <p className="text-sm text-gray-400">No posts yet.</p>
+          <p className="text-sm text-[#f5f5f0]/30">No posts yet.</p>
         ) : (
-          <div className="space-y-3">
+          <div className="border border-[#f5f5f0]/[0.08]">
             {stats.latest.map((post) => (
-              <div
-                key={post.slug}
-                className="flex items-center justify-between gap-4 rounded-sm border border-gray-100 bg-white px-4 py-3"
-              >
+              <div key={post.slug} className="flex items-center justify-between gap-4 bg-[#0d0d0d] hover:bg-[#1a1a1a] transition-colors px-5 py-3.5 border-b border-[#f5f5f0]/[0.06] last:border-b-0">
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">
-                    {post.title}
-                  </p>
-                  <p className="text-xs text-gray-400 mt-0.5 font-mono truncate">
+                  <p className="text-[14px] font-medium text-[#f5f5f0]/80 truncate">{post.title}</p>
+                  <p className="text-[11px] text-[#f5f5f0]/30 mt-0.5 truncate" style={{ fontFamily: "var(--font-mono)" }}>
                     /blog/{post.slug}
                   </p>
                 </div>
                 <div className="flex items-center gap-4 shrink-0">
-                  <time
-                    dateTime={post.createdAt}
-                    className="text-xs text-gray-400 whitespace-nowrap"
-                  >
+                  <time dateTime={post.createdAt} className="text-[11px] text-[#f5f5f0]/30 whitespace-nowrap">
                     {formatDate(post.createdAt)}
                   </time>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    target="_blank"
-                    className="text-xs text-gray-400 hover:text-gray-700 transition-colors"
-                    title="View post"
-                  >
+                  <Link href={`/blog/${post.slug}`} target="_blank" className="text-[12px] text-[#f5f5f0]/30 hover:text-[#6366f1] transition-colors" title="View post">
                     ↗
                   </Link>
                 </div>
@@ -145,22 +122,15 @@ export default async function DashboardPage() {
       </div>
 
       {/* Quick actions */}
-      <div className="mt-12 pt-8 border-t border-gray-100">
-        <p className="text-xs uppercase tracking-[0.18em] text-gray-400 mb-4">
+      <div className="mt-12 pt-8 border-t border-[#f5f5f0]/[0.08]">
+        <p className="text-[10px] uppercase tracking-[0.18em] text-[#f5f5f0]/30 mb-4" style={alphaLyrae}>
           Quick Actions
         </p>
         <div className="flex flex-wrap gap-3">
-          <Link
-            href="/dashboard/manage-blog"
-            className="rounded-sm border border-gray-200 bg-white px-4 py-2 text-sm text-gray-700 hover:border-gray-400 hover:text-gray-900 transition-colors"
-          >
+          <Link href="/dashboard/manage-blog" className="border border-[#f5f5f0]/[0.12] bg-[#1a1a1a] px-4 py-2 text-[13px] text-[#f5f5f0]/60 hover:border-[#6366f1]/40 hover:text-[#f5f5f0] transition-colors" style={alphaLyrae}>
             Manage blogs
           </Link>
-          <Link
-            href="/blog"
-            target="_blank"
-            className="rounded-sm border border-gray-200 bg-white px-4 py-2 text-sm text-gray-700 hover:border-gray-400 hover:text-gray-900 transition-colors"
-          >
+          <Link href="/blog" target="_blank" className="border border-[#f5f5f0]/[0.12] bg-[#1a1a1a] px-4 py-2 text-[13px] text-[#f5f5f0]/60 hover:border-[#6366f1]/40 hover:text-[#f5f5f0] transition-colors" style={alphaLyrae}>
             View public blog ↗
           </Link>
         </div>
