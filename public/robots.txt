@@ -1,0 +1,19 @@
+# ── Crawling rules ────────────────────────────────────────────────────────────
+User-agent: *
+
+# Allow all public pages
+Allow: /
+Allow: /blog
+Allow: /blog/
+Allow: /team
+
+# Block private / non-indexable routes
+Disallow: /dashboard
+Disallow: /dashboard/
+Disallow: /auth
+Disallow: /auth/
+Disallow: /api/
+Disallow: /_next/
+
+# ── Sitemap ───────────────────────────────────────────────────────────────────
+Sitemap: https://zuolab.io/sitemap.xml
