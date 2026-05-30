@@ -201,7 +201,7 @@ export default async function BlogPostPage({
         <div className="px-6 sm:px-10 lg:px-16 py-12 sm:py-16 max-w-4xl mx-auto w-full">
           <article
             className="
-              prose max-w-none
+              prose prose-invert max-w-none
               prose-headings:font-medium prose-headings:tracking-tight
               prose-headings:text-foreground/90
               prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl

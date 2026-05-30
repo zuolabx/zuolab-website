@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import { SiteNav } from "@/components/ui/nav";
 
 export const metadata: Metadata = {
   title: "Blog — ZuoLab",
@@ -57,28 +58,38 @@ export default async function BlogPage() {
           {/* Logo */}
           <div className="flex items-center px-3 sm:px-5 border-r border-foreground/[0.35]">
             <Link href="/" className="flex items-center gap-2">
-              <svg className="h-5 w-5" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="1" width="34" height="34" stroke="currentColor" strokeWidth="1" />
-                <path d="M9 11h18L9 25h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 36 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="1"
+                  y="1"
+                  width="34"
+                  height="34"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                />
+                <path
+                  d="M9 11h18L9 25h18"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="square"
+                />
               </svg>
-              <span className="text-[13px] tracking-[0.05em]" style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}>
+              <span
+                className="text-[13px] tracking-[0.05em]"
+                style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}
+              >
                 Zuo<span className="text-accent">lab</span>
               </span>
             </Link>
           </div>
 
           {/* Nav links */}
-          <div className="flex-1 flex items-center justify-center gap-3 sm:gap-10 px-2 sm:px-5 border-r border-foreground/[0.35]">
-            <Link href="/#work" className="text-[12px] sm:text-[15px] text-foreground/70 hover:text-foreground transition-colors" style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}>
-              Services
-            </Link>
-            <Link href="/#cases" className="text-[12px] sm:text-[15px] text-foreground/70 hover:text-foreground transition-colors" style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}>
-              Work
-            </Link>
-            <Link href="/blog" className="text-[12px] sm:text-[15px] text-foreground transition-colors" style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}>
-              Blog
-            </Link>
-          </div>
+          <SiteNav />
 
           {/* CTA */}
           <a
@@ -94,7 +105,6 @@ export default async function BlogPage() {
 
       {/* Page container — same border-x pattern as home */}
       <div className="w-full border-x border-foreground/[0.35] mt-11 min-h-screen">
-
         {/* Page header — SectionHeader pattern */}
         <div className="flex items-stretch border-b border-foreground/[0.35]">
           <div className="flex items-center px-5 py-2.5 border-r border-foreground/[0.35] shrink-0 bg-[#1a1a1a]">
@@ -115,13 +125,21 @@ export default async function BlogPage() {
           {/* Subtle grid overlay */}
           <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-8 pointer-events-none opacity-20">
             {Array.from({ length: 8 }).map((_, idx) => (
-              <div key={idx} className="border-l border-foreground/20 first:border-l-0 last:border-r hidden md:block" />
+              <div
+                key={idx}
+                className="border-l border-foreground/20 first:border-l-0 last:border-r hidden md:block"
+              />
             ))}
           </div>
 
           <div className="relative z-10 max-w-3xl">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-foreground/30 mb-5" style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}>
-              {blogs.length > 0 ? `${blogs.length} post${blogs.length !== 1 ? "s" : ""}` : "No posts yet"}
+            <p
+              className="text-[11px] tracking-[0.2em] uppercase text-foreground/30 mb-5"
+              style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}
+            >
+              {blogs.length > 0
+                ? `${blogs.length} post${blogs.length !== 1 ? "s" : ""}`
+                : "No posts yet"}
             </p>
             <h1
               className="text-foreground/90 tracking-[-0.02em] mb-5"
@@ -134,7 +152,8 @@ export default async function BlogPage() {
               From the lab.
             </h1>
             <p className="text-foreground/40 text-[15px] sm:text-[17px] leading-[1.7] max-w-xl">
-              Engineering deep-dives, system design notes, and lessons from building things that actually ship.
+              Engineering deep-dives, system design notes, and lessons from
+              building things that actually ship.
             </p>
           </div>
         </div>
@@ -142,14 +161,20 @@ export default async function BlogPage() {
         {/* Blog list */}
         {blogs.length === 0 ? (
           <div className="px-6 sm:px-10 py-20 border-b border-foreground/[0.35]">
-            <p className="text-foreground/25 text-[15px]" style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}>
+            <p
+              className="text-foreground/25 text-[15px]"
+              style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}
+            >
               No posts yet — check back soon.
             </p>
           </div>
         ) : (
           <div>
             {blogs.map((blog, i) => (
-              <article key={blog._id} className="border-b border-foreground/[0.35]">
+              <article
+                key={blog._id}
+                className="border-b border-foreground/[0.35]"
+              >
                 <Link
                   href={`/blog/${blog.slug}`}
                   className="group grid md:grid-cols-[1fr_auto] items-stretch hover:bg-foreground/[0.02] transition-colors duration-200"
@@ -158,17 +183,27 @@ export default async function BlogPage() {
                   <div className="px-6 sm:px-10 py-8 sm:py-10 md:border-r border-foreground/[0.35]">
                     {/* Post number + meta */}
                     <div className="flex items-center gap-4 mb-5">
-                      <span className="text-[10px] text-foreground/20 tracking-[0.15em]" style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}>
+                      <span
+                        className="text-[10px] text-foreground/20 tracking-[0.15em]"
+                        style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}
+                      >
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <span className="w-px h-3 bg-foreground/20" />
-                      <span className="text-[11px] text-foreground/35 tracking-[0.1em] uppercase" style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}>
+                      <span
+                        className="text-[11px] text-foreground/35 tracking-[0.1em] uppercase"
+                        style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}
+                      >
                         {blog.author}
                       </span>
                       {blog.createdAt && (
                         <>
                           <span className="w-1 h-1 rounded-full bg-foreground/20" />
-                          <time dateTime={blog.createdAt} className="text-[11px] text-foreground/35 tracking-[0.05em]" style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}>
+                          <time
+                            dateTime={blog.createdAt}
+                            className="text-[11px] text-foreground/35 tracking-[0.05em]"
+                            style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}
+                          >
                             {formatDate(blog.createdAt)}
                           </time>
                         </>
@@ -188,9 +223,14 @@ export default async function BlogPage() {
                     </h2>
 
                     {/* Read link */}
-                    <span className="group/cta relative inline-flex items-center text-accent text-[13px] tracking-[0.08em] transition-all" style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}>
+                    <span
+                      className="group/cta relative inline-flex items-center text-accent text-[13px] tracking-[0.08em] transition-all"
+                      style={{ fontFamily: "'Alpha Lyrae', sans-serif" }}
+                    >
                       Read post
-                      <span className="ml-1.5 group-hover:ml-3 transition-all duration-200">→</span>
+                      <span className="ml-1.5 group-hover:ml-3 transition-all duration-200">
+                        →
+                      </span>
                     </span>
                   </div>
 
@@ -236,7 +276,10 @@ export default async function BlogPage() {
               </span>
               <span
                 className="text-[5rem] md:text-[7rem] lg:text-[9rem] font-medium leading-none text-foreground/[0.03]"
-                style={{ fontFamily: "'Alpha Lyrae', sans-serif", fontWeight: 500 }}
+                style={{
+                  fontFamily: "'Alpha Lyrae', sans-serif",
+                  fontWeight: 500,
+                }}
               >
                 lab
               </span>
@@ -244,10 +287,14 @@ export default async function BlogPage() {
           </div>
           <div className="flex items-stretch">
             <div className="flex-1 flex items-center px-6 py-3 border-r border-foreground/[0.35]">
-              <p className="text-[14px] text-foreground/20 tracking-[0.1em]">© 2025 Zuolab</p>
+              <p className="text-[14px] text-foreground/20 tracking-[0.1em]">
+                © 2025 Zuolab
+              </p>
             </div>
             <div className="flex items-center px-6 py-3">
-              <p className="text-[14px] text-foreground/20 tracking-[0.1em]">Built with obsessive attention to detail</p>
+              <p className="text-[14px] text-foreground/20 tracking-[0.1em]">
+                Built with obsessive attention to detail
+              </p>
             </div>
           </div>
         </footer>
