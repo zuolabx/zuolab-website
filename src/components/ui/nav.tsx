@@ -1,6 +1,12 @@
 const alphaLyrae = { fontFamily: "'Alpha Lyrae', sans-serif" };
 
-function CharHover({ text, className = "" }: { text: string; className?: string }) {
+function CharHover({
+  text,
+  className = "",
+}: {
+  text: string;
+  className?: string;
+}) {
   return (
     <span className={`inline-flex ${className}`}>
       {text.split("").map((char, i) => (
@@ -19,9 +25,26 @@ function CharHover({ text, className = "" }: { text: string; className?: string 
 function ZuoLogo() {
   return (
     <div className="flex items-center gap-2">
-      <svg className="h-5 w-5" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="1" width="34" height="34" stroke="currentColor" strokeWidth="1" />
-        <path d="M9 11h18L9 25h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+      <svg
+        className="h-5 w-5"
+        viewBox="0 0 36 36"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          x="1"
+          y="1"
+          width="34"
+          height="34"
+          stroke="currentColor"
+          strokeWidth="1"
+        />
+        <path
+          d="M9 11h18L9 25h18"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="square"
+        />
       </svg>
       <span className="text-[13px] tracking-[0.05em]" style={alphaLyrae}>
         Zuo<span className="text-accent">lab</span>
@@ -38,14 +61,33 @@ export function SiteNav() {
           <ZuoLogo />
         </div>
         <div className="flex-1 flex items-center justify-center gap-3 sm:gap-10 px-2 sm:px-5 border-r border-foreground/[0.35]">
-          <a href="#work" className="group text-[12px] sm:text-[15px]" style={alphaLyrae}>
+          <a
+            href="#work"
+            className="group text-[12px] sm:text-[15px]"
+            style={alphaLyrae}
+          >
             <CharHover text="Services" />
           </a>
-          <a href="#cases" className="group text-[12px] sm:text-[15px]" style={alphaLyrae}>
+          <a
+            href="#cases"
+            className="group text-[12px] sm:text-[15px]"
+            style={alphaLyrae}
+          >
             <CharHover text="Work" />
           </a>
-          <a href="#team" className="group text-[12px] sm:text-[15px]" style={alphaLyrae}>
+          <a
+            href="/team"
+            className="group text-[12px] sm:text-[15px]"
+            style={alphaLyrae}
+          >
             <CharHover text="Team" />
+          </a>
+          <a
+            href="/blog"
+            className="group text-[12px] sm:text-[15px]"
+            style={alphaLyrae}
+          >
+            <CharHover text="Blog" />
           </a>
         </div>
         <a
