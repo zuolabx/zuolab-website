@@ -547,59 +547,44 @@ function FAQs() {
 function Attestations() {
   const testimonials = [
     {
-      text: "ZuoLab didn't just build our product - they challenged our assumptions and made it ten times better than what we spec'd.",
-      name: "Marcus Chen",
-      role: "Cto · Paystack",
+      text: "Working with Zuolabs has been a really positive experience overall. The team consistently showed professionalism, strong technical knowledge, and a genuine willingness to understand our requirements before implementing solutions.",
+      name: "Debjeet Ghosh",
+      role: "6 Month Engagement",
     },
     {
-      text: "We went from concept to 10k users in 3 months. Their speed is unreal, and the code quality is genuinely impressive.",
-      name: "Sarah Okafor",
-      role: "Founder · Kinde",
+      text: "Excellent communication, reliable delivery, and strong technical execution. The team was responsive throughout the project and consistently met expectations.",
+      name: "Richard Terebesi",
+      role: "3 Month Engagement",
     },
     {
-      text: "One of the best engineering partnerships we've had. They pushed back where it mattered and delivered a system that just works.",
-      name: "David Park",
-      role: "Vp Eng · Raycast",
+      text: "Zuolabs adapted quickly to feedback and changing requirements. The collaboration felt smooth, professional, and highly efficient from start to finish.",
+      name: "Marta Silva",
+      role: "6 Month Engagement",
     },
     {
-      text: "Their architecture decisions saved us months of refactoring down the line. Genuinely senior engineering thinking.",
-      name: "Liam Torres",
-      role: "Cto · Resend",
+      text: "A dependable long-term engineering partner. Strong ownership, attention to detail, and the ability to consistently deliver high-quality work over an extended period.",
+      name: "Nikhil Joshi",
+      role: "1+ Year Engagement",
     },
     {
-      text: "Shipped our MVP in 3 weeks. No corners cut, no tech debt. We scaled to 50k users without touching the codebase.",
-      name: "Priya Mehta",
-      role: "Founder · Kyte",
-    },
-    {
-      text: "They integrated an AI pipeline into our existing system without downtime. Production-grade from day one.",
-      name: "Jake Morrison",
-      role: "Eng Lead · Linear",
-    },
-    {
-      text: "ZuoLab understood our domain faster than any team we've worked with. The handoff was seamless.",
-      name: "Amara Osei",
-      role: "Cpo · Supabase",
-    },
-    {
-      text: "No drama, no surprises, no scope creep. Just clean code shipped on time. Exactly what we needed.",
-      name: "Tom Richter",
-      role: "Vp Eng · Vercel",
-    },
-    {
-      text: "Their consulting engagement identified 3 critical bottlenecks we'd missed for months. Worth every penny.",
-      name: "Nina Zhao",
-      role: "Director · Stripe",
+      text: "Fast turnaround, clear communication, and excellent support throughout the project. The team was easy to work with and delivered exactly what was needed.",
+      name: "Amit Agarwal",
+      role: "1 Month Engagement",
     },
   ];
 
-  const col1 = testimonials.slice(0, 3);
-  const col2 = testimonials.slice(3, 6);
-  const col3 = testimonials.slice(6, 9);
+  const col1 = testimonials.slice(0, 2);
+  const col2 = testimonials.slice(2, 4);
+  const col3 = testimonials.slice(4);
 
   return (
     <section className="border-b border-foreground/[0.35]">
       <SectionHeader label="Attestations" />
+
+      <div className="text-center py-4 text-sm text-muted-foreground">
+        Based on verified client engagements ranging from 1 month to 1+ year
+      </div>
+
       <div className="flex justify-center gap-4 py-6 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[500px] overflow-hidden">
         <TestimonialsColumn testimonials={col1} duration={15} />
         <TestimonialsColumn
@@ -716,8 +701,6 @@ function Team() {
     </section>
   );
 }
-
-
 
 export default function Home() {
   return (
