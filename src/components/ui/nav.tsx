@@ -61,6 +61,13 @@ export function SiteNav() {
           <ZuoLogo />
         </div>
         <div className="flex-1 flex items-center justify-center gap-3 sm:gap-10 px-2 sm:px-5 border-r border-foreground/[0.35]">
+         <a
+            href="/products"
+            className="group text-[12px] sm:text-[15px]"
+            style={alphaLyrae}
+          >
+            <CharHover text="Products" />
+          </a>
           <a
             href="/services"
             className="group text-[12px] sm:text-[15px]"
