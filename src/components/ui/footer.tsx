@@ -71,17 +71,17 @@ export function SiteFooter() {
           </h4>
           <ul className="space-y-3">
             <li>
-              <a href="#work" className="group text-[14px]" style={alphaLyrae}>
+              <a href="/services" className="group text-[14px]" style={alphaLyrae}>
                 <CharHover text="Services" />
               </a>
             </li>
             <li>
-              <a href="#cases" className="group text-[14px]" style={alphaLyrae}>
+              <a href="/work" className="group text-[14px]" style={alphaLyrae}>
                 <CharHover text="Work" />
               </a>
             </li>
             <li>
-              <a href="#team" className="group text-[14px]" style={alphaLyrae}>
+              <a href="/team" className="group text-[14px]" style={alphaLyrae}>
                 <CharHover text="Team" />
               </a>
             </li>
@@ -127,7 +127,7 @@ export function SiteFooter() {
             </li>
             <li>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/zuo-labs-0795b4412/"
                 className="group flex items-center gap-3 text-[14px]"
                 style={alphaLyrae}
               >

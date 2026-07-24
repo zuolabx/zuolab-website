@@ -58,7 +58,7 @@ export function SiteNav() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0d0d0d]/95 backdrop-blur-sm">
       <div className="w-full flex items-stretch h-11 border-x border-b border-foreground/[0.35]">
         <div className="flex items-center px-3 sm:px-5 border-r border-foreground/[0.35]">
-          <ZuoLogo />
+          <a href="/"><ZuoLogo /></a>
         </div>
         <div className="flex-1 flex items-center justify-center gap-3 sm:gap-10 px-2 sm:px-5 border-r border-foreground/[0.35]">
          <a
