@@ -545,58 +545,58 @@ function FAQs() {
 }
 
 function Attestations() {
-  const testimonials = [
-    {
-      text: "Working with Zuolabs has been a really positive experience overall. The team consistently showed professionalism, strong technical knowledge, and a genuine willingness to understand our requirements before implementing solutions.",
-      name: "Debjeet Ghosh",
-      role: "6 Month Engagement",
-    },
-    {
-      text: "Excellent communication, reliable delivery, and strong technical execution. The team was responsive throughout the project and consistently met expectations.",
-      name: "Richard Terebesi",
-      role: "3 Month Engagement",
-    },
-    {
-      text: "Zuolabs adapted quickly to feedback and changing requirements. The collaboration felt smooth, professional, and highly efficient from start to finish.",
-      name: "Marta Silva",
-      role: "6 Month Engagement",
-    },
-    {
-      text: "A dependable long-term engineering partner. Strong ownership, attention to detail, and the ability to consistently deliver high-quality work over an extended period.",
-      name: "Nikhil Joshi",
-      role: "1+ Year Engagement",
-    },
-    {
-      text: "Fast turnaround, clear communication, and excellent support throughout the project. The team was easy to work with and delivered exactly what was needed.",
-      name: "Amit Agarwal",
-      role: "1 Month Engagement",
-    },
-  ];
-
-  const col1 = testimonials.slice(0, 2);
-  const col2 = testimonials.slice(2, 4);
-  const col3 = testimonials.slice(4);
-
   return (
     <section className="border-b border-foreground/[0.35]">
       <SectionHeader label="Attestations" />
 
-      <div className="text-center py-4 text-sm text-muted-foreground">
-        Based on verified client engagements ranging from 1 month to 1+ year
-      </div>
+      <div className="py-8 px-4">
+        <div className="mx-auto max-w-4xl border border-foreground/[0.35] bg-background p-8 md:p-10">
+          <p className="text-xl leading-relaxed text-foreground">
+            “Working with Zuolabs has been a really positive experience overall.
+            The team consistently showed professionalism, strong technical
+            knowledge, and a genuine willingness to understand our requirements
+            before implementing solutions.”
+          </p>
 
-      <div className="flex justify-center gap-4 py-6 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[500px] overflow-hidden">
-        <TestimonialsColumn testimonials={col1} duration={15} />
-        <TestimonialsColumn
-          testimonials={col2}
-          className="hidden md:block"
-          duration={19}
-        />
-        <TestimonialsColumn
-          testimonials={col3}
-          className="hidden lg:block"
-          duration={17}
-        />
+          <div className="mt-8 flex items-center justify-between border-t border-foreground/[0.35] pt-5">
+            <div>
+              <h3 className="font-medium text-foreground">Debjeet Ghosh</h3>
+              <p className="text-sm text-muted-foreground">
+                6 Month Engagement
+              </p>
+            </div>
+
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+              Verified Client
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="py-8 px-4">
+        <div className="mx-auto max-w-4xl border border-foreground/[0.35] bg-background p-8 md:p-10">
+          <p className="text-xl leading-relaxed text-foreground">
+            “they handled tasks
+            with good attention to detail and timely delivery. Instead of simply
+            completing assigned work, they often suggested practical
+            improvements and better approaches that helped improve the final
+            outcome of the project. Their ability to adapt quickly to feedback
+            and changing requirements made the entire collaboration much easier
+            and more efficient.”
+          </p>
+
+          <div className="mt-8 flex items-center justify-between border-t border-foreground/[0.35] pt-5">
+            <div>
+              <h3 className="font-medium text-foreground">Nikhil Joshi</h3>
+              <p className="text-sm text-muted-foreground">
+                4 Month Engagement
+              </p>
+            </div>
+
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+              Verified Client
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );
