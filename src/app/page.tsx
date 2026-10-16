@@ -1,722 +1,354 @@
-"use client";
-
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
-import { TestimonialsColumn } from "@/components/ui/testimonials-columns";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import Link from "next/link";
 import { SiteNav } from "@/components/ui/nav";
 import { SiteFooter } from "@/components/ui/footer";
+import { SectionLabel } from "@/components/ui/section-label";
 
-const alphaLyrae = { fontFamily: "'Alpha Lyrae', sans-serif" };
-const cardo = { fontFamily: "'Cardo', serif" };
+export const metadata = {
+  title: "ZuoLabs — Product Development & AI Engineering Agency",
+  description:
+    "We design, build, and ship software products, AI integrations, and AI-native applications for businesses and founders.",
+};
 
-function AnimateIn({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.5, delay, ease: [0.25, 0.4, 0.25, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+const capabilities = [
+  {
+    num: "01",
+    title: "AI Integration & Workflows",
+    description:
+      "RAG pipelines, custom model integrations, and agentic workflows that solve real business problems — built to handle production workloads, not just demo scripts.",
+  },
+  {
+    num: "02",
+    title: "End-to-End Product Engineering",
+    description:
+      "From technical architecture and database modeling to responsive frontend interfaces and cloud deployments. We ship complete, production-ready software.",
+  },
+  {
+    num: "03",
+    title: "AI-Native Applications",
+    description:
+      "Designing and engineering software built from the ground up around generative AI, intelligent search, and autonomous data processing.",
+  },
+  {
+    num: "04",
+    title: "Architecture & Systems Modernization",
+    description:
+      "Performance audits, API integrations, enterprise system connectivity (including SAP ABAP), and scalable refactoring for growing systems.",
+  },
+];
 
-function CharHover({
-  text,
-  className = "",
-}: {
-  text: string;
-  className?: string;
-}) {
-  return (
-    <span className={`inline-flex ${className}`}>
-      {text.split("").map((char, i) => (
-        <span
-          key={i}
-          className="relative inline-flex items-center justify-center text-foreground/70 group-hover:text-foreground transition-colors duration-150"
-          style={{ transitionDelay: `${i * 25}ms` }}
-        >
-          {char === " " ? " " : char}
-        </span>
-      ))}
-    </span>
-  );
-}
+const productsPreview = [
+  {
+    name: "Raven",
+    tagline: "Headless AI Knowledge Engine",
+    description:
+      "Transforms scattered product documentation, internal wikis, and manuals into an intelligent teammate for employees and customers with vector retrieval and natural query handling.",
+    status: "Active Product",
+  },
+  {
+    name: "Servio",
+    tagline: "Restaurant Operating System",
+    description:
+      "A unified platform combining table orders, kitchen display, real-time inventory tracking, payroll, and billing analytics into a streamlined interface.",
+    status: "Active Product",
+  },
+];
 
-function ZuoLogo() {
-  return (
-    <div className="flex items-center gap-2">
-      <svg
-        className="h-5 w-5"
-        viewBox="0 0 36 36"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          x="1"
-          y="1"
-          width="34"
-          height="34"
-          stroke="currentColor"
-          strokeWidth="1"
-        />
-        <path
-          d="M9 11h18L9 25h18"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="square"
-        />
-      </svg>
-      <span className="text-[13px] tracking-[0.05em]" style={alphaLyrae}>
-        Zuo<span className="text-accent">lab</span>
-      </span>
-    </div>
-  );
-}
-
-function SectionHeader({ label }: { label: string }) {
-  return (
-    <div className="flex items-stretch border-y border-foreground/[0.35]">
-      <div className="flex items-center px-5 py-2.5 border-r border-foreground/[0.35] shrink-0 bg-[#1a1a1a]">
-        <span
-          className="text-[11px] tracking-[0.1em] text-foreground/50"
-          style={alphaLyrae}
-        >
-          {label}
-        </span>
-      </div>
-      <div className="flex-1 relative overflow-hidden">
-        <div className="absolute inset-0 halftone opacity-20" />
-      </div>
-    </div>
-  );
-}
-
-function Hero() {
-  return (
-    <section className="relative min-h-[85vh] md:min-h-[70vh] flex flex-col justify-center bg-[#0d0d10] -mx-px overflow-hidden pb-8 md:pb-0">
-      <AnimatedGradientBackground
-        Breathing={true}
-        startingGap={140}
-        breathingRange={6}
-        animationSpeed={0.01}
-        gradientColors={[
-          "#0d0d10",
-          "#0d0d16",
-          "#12101c",
-          "#18122e",
-          "#12101c",
-          "#0d0d16",
-          "#0d0d10",
-        ]}
-        gradientStops={[15, 30, 45, 55, 70, 85, 100]}
-        topOffset={15}
-      />
-
-      {/* Hero image - full section */}
-      <motion.div
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-        className="absolute inset-0 pointer-events-none z-[2] opacity-20 md:opacity-40"
-      >
-        <Image
-          src="/herodemo2.jpg"
-          alt="Hero"
-          fill
-          className="object-cover object-center"
-          priority
-        />
-        {/* Rough texture overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          }}
-        />
-      </motion.div>
-
-      {/* Grid overlay */}
-      <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-8 pointer-events-none opacity-30">
-        {Array.from({ length: 8 }).map((_, idx) => (
-          <div
-            key={idx}
-            className="border-l border-foreground/20 first:border-l-0 last:border-r hidden md:block"
-          />
-        ))}
-        {Array.from({ length: 4 }).map((_, idx) => (
-          <div
-            key={`mobile-${idx}`}
-            className="border-l border-foreground/20 first:border-l-0 last:border-r md:hidden"
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 px-4 sm:px-6 pt-12 sm:pt-16 flex justify-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
-          className="text-[#f2efe6] tracking-[-0.02em] max-w-[1100px]"
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(40px, 9vw, 120px)",
-            lineHeight: "1.08",
-          }}
-        >
-          <span className="block" style={{ marginLeft: "0%" }}>
-            Assumptions
-          </span>
-          <span
-            className="block"
-            style={{ marginLeft: "clamp(45%, 55%, 65%)" }}
-          >
-            Kill
-          </span>
-          <span
-            className="block"
-            style={{ marginLeft: "clamp(60%, 70%, 78%)" }}
-          >
-            Products.
-          </span>
-        </motion.h1>
-      </div>
-    </section>
-  );
-}
-
-function Benefits() {
-  return (
-    <section className="border-b border-foreground/[0.35]">
-      <SectionHeader label="Why work with us" />
-      <div className="grid grid-cols-2 md:grid-cols-4">
-        {/* Main hero tile */}
-        <div className="col-span-2 row-span-2 border-r border-b border-foreground/[0.35] p-8 md:p-10 flex flex-col justify-between min-h-[320px] md:min-h-[400px] relative overflow-hidden">
-          {/* Background image with texture */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/herodemo.jpg"
-              alt="Ship fast and scale smarter"
-              fill
-              className="object-cover object-center opacity-25"
-            />
-            {/* Rough texture overlay */}
-            <div
-              className="absolute inset-0 opacity-[0.2] mix-blend-overlay pointer-events-none"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-              }}
-            />
-          </div>
-
-          <div className="relative z-10">
-            <h2
-              className="text-3xl md:text-5xl font-medium tracking-tight mb-4"
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              ship faster.
-              <br />
-              scale smarter.
-            </h2>
-            <p className="text-foreground/50 text-[15px] md:text-[16px] leading-[1.7] max-w-md">
-              from zero to production in weeks. built-in analytics, feature
-              flags, and performance optimization. ready for growth from day
-              one.
-            </p>
-          </div>
-          <div className="flex gap-3 mt-6 relative z-10">
-            <a
-              href="https://cal.com/zuolabs/30min"
-              className="inline-flex items-center px-5 py-2.5 bg-accent text-[#0d0d0d] text-[14px] hover:bg-accent/90 transition-colors"
-              style={alphaLyrae}
-            >
-              start project
-            </a>
-            <a
-              href="#work"
-              className="inline-flex items-center px-5 py-2.5 border border-foreground/[0.3] text-[14px] hover:border-foreground/[0.5] transition-colors"
-              style={alphaLyrae}
-            >
-              view services
-            </a>
-          </div>
-        </div>
-
-        {/* Chart 1 - Time to Market Bar */}
-        <div className="border-r border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
-          <span
-            className="text-[11px] text-foreground/40 tracking-[0.1em]"
-            style={alphaLyrae}
-          >
-            time to market
-          </span>
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] text-foreground/40 w-12">
-                typical
-              </span>
-              <div className="flex-1 h-2 bg-foreground/10 relative overflow-hidden">
-                <div className="absolute inset-0 bg-foreground/30 w-full" />
-              </div>
-              <span className="text-[10px] text-foreground/50">16w</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] text-foreground/40 w-12">
-                zuolab
-              </span>
-              <div className="flex-1 h-2 bg-foreground/10 relative overflow-hidden">
-                <div
-                  className="absolute inset-0 bg-accent transition-all duration-1000 ease-out"
-                  style={{
-                    width: "30%",
-                    animation: "barGrow 4s ease-in-out infinite",
-                  }}
-                />
-              </div>
-              <span className="text-[10px] text-accent font-medium">4w</span>
-            </div>
-          </div>
-          <p className="text-[12px] text-foreground/50 mt-2">
-            4x faster launches
-          </p>
-        </div>
-
-        {/* Chart 2 - Growth Curve */}
-        <div className="border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
-          <span
-            className="text-[11px] text-foreground/40 tracking-[0.1em]"
-            style={alphaLyrae}
-          >
-            user growth
-          </span>
-          <div className="h-16 flex items-end gap-0.5">
-            {[12, 18, 28, 45, 72, 95, 98, 100].map((height, i) => (
-              <div
-                key={i}
-                className="flex-1 bg-accent/20 hover:bg-accent transition-all duration-700 ease-out"
-                style={{
-                  height: `${height}%`,
-                  animation: `barRise 3s ease-out infinite`,
-                  animationDelay: `${i * 0.15}s`,
-                }}
-              />
-            ))}
-          </div>
-          <p className="text-[12px] text-foreground/50 mt-2">
-            10x velocity spike
-          </p>
-        </div>
-
-        {/* Chart 3 - Performance Score */}
-        <div className="border-r border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
-          <span
-            className="text-[11px] text-foreground/40 tracking-[0.1em]"
-            style={alphaLyrae}
-          >
-            performance
-          </span>
-          <div className="relative">
-            <svg viewBox="0 0 100 50" className="w-full h-16">
-              <path
-                d="M 5 45 Q 25 35, 50 15 T 95 5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="text-accent opacity-30"
-              />
-              <path
-                d="M 5 45 Q 25 35, 50 15 T 95 5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="text-accent"
-                strokeDasharray="200"
-                strokeDashoffset="0"
-              >
-                <animate
-                  attributeName="stroke-dashoffset"
-                  from="200"
-                  to="0"
-                  dur="2s"
-                  fill="freeze"
-                />
-              </path>
-              <circle cx="95" cy="5" r="2" className="fill-accent" />
-            </svg>
-          </div>
-          <p className="text-[12px] text-foreground/50">99/100 lighthouse</p>
-        </div>
-
-        {/* Chart 4 - Cost Reduction */}
-        <div className="border-b border-foreground/[0.35] p-6 flex flex-col justify-between">
-          <span
-            className="text-[11px] text-foreground/40 tracking-[0.1em]"
-            style={alphaLyrae}
-          >
-            cost per user
-          </span>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-[10px]">
-              <span className="text-foreground/40">before</span>
-              <span className="text-foreground/50">$8.50</span>
-            </div>
-            <div className="w-full h-8 bg-foreground/5 relative overflow-hidden">
-              <div className="absolute inset-y-0 left-0 bg-foreground/20 w-full" />
-              <div
-                className="absolute inset-y-0 left-0 bg-accent transition-all duration-1000 ease-out"
-                style={{
-                  width: "40%",
-                  animation: "barShrink 4s ease-in-out infinite",
-                }}
-              />
-            </div>
-            <div className="flex items-center justify-between text-[10px]">
-              <span className="text-foreground/40">after</span>
-              <span className="text-accent font-medium">$3.40</span>
-            </div>
-          </div>
-          <p className="text-[12px] text-foreground/50">-60% savings</p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Work() {
-  const services = [
-    {
-      num: "01",
-      title: "Saas Development",
-      description:
-        "Full-stack product engineering. From napkin sketch to thousands of paying users. Architecture that scales, code that lasts.",
-      cta: { label: "Case Studies", href: "#cases" },
-    },
-    {
-      num: "02",
-      title: "Technical Consulting",
-      description:
-        "Architecture reviews, performance audits, and hands-on guidance from engineers who've scaled systems to millions.",
-      cta: { label: "Talk to Us", href: "https://cal.com/zuolabs/30min" },
-    },
-    {
-      num: "03",
-      title: "Ai Integration",
-      description:
-        "Custom models, RAG pipelines, and agentic workflows that work in production - not just demos.",
-      cta: { label: "Talk to Us", href: "https://cal.com/zuolabs/30min" },
-    },
-  ];
-
-  return (
-    <section id="work" className="border-b border-foreground/[0.35]">
-      <SectionHeader label="Services" />
-      <div className="grid md:grid-cols-3 items-stretch">
-        {services.map((service, i) => (
-          <AnimateIn key={service.title} delay={i * 0.08}>
-            <div
-              className={`group h-full min-h-[320px] py-12 px-8 flex flex-col ${i < 2 ? "border-r border-foreground/[0.35]" : ""}`}
-            >
-              <span className="text-[10px] text-foreground/20 mb-8 block tracking-[0.15em]">
-                {service.num}
-              </span>
-              <h3 className="text-[19px] font-medium mb-5" style={alphaLyrae}>
-                {service.title}
-              </h3>
-              <p className="text-foreground/40 leading-[1.7] mb-10 flex-1 text-[16px]">
-                {service.description}
-              </p>
-              <a
-                href={service.cta.href}
-                className="group relative inline-flex items-center text-accent text-[15px] tracking-[0.08em] transition-all hover:pl-2"
-              >
-                <span className="absolute left-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                  →
-                </span>
-                <span className="group-hover:text-foreground transition-colors">
-                  {service.cta.label}
-                </span>
-                <span className="ml-1 group-hover:ml-2 transition-all">→</span>
-              </a>
-            </div>
-          </AnimateIn>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function FAQs() {
-  const faqItems = [
-    {
-      id: "item-1",
-      question: "How long does a typical project take?",
-      answer:
-        "Most projects are delivered within 4-8 weeks, depending on scope. We prioritize speed without cutting corners - you'll see working software in production, not just prototypes.",
-    },
-    {
-      id: "item-2",
-      question: "Do you work with early-stage startups?",
-      answer:
-        "Yes. We've built MVPs that scaled to thousands of users. If you have product-market fit or a clear vision, we can help you ship fast.",
-    },
-    {
-      id: "item-3",
-      question: "What's your tech stack?",
-      answer:
-        "We're stack-agnostic but default to Next.js, React, Node.js, PostgreSQL, and AWS/Vercel. We choose technology based on your constraints, not ours.",
-    },
-    {
-      id: "item-4",
-      question: "How do you handle project scope changes?",
-      answer:
-        "We embrace change. If requirements shift mid-project, we re-scope and communicate impact immediately. No surprises, no scope creep drama.",
-    },
-    {
-      id: "item-5",
-      question: "Do you provide ongoing support after launch?",
-      answer:
-        "Yes. We offer maintenance retainers and on-call support. Most clients keep us around for feature development and infrastructure work.",
-    },
-    {
-      id: "item-6",
-      question: "What if we're not technical - can you still work with us?",
-      answer:
-        "Absolutely. We translate product ideas into architecture decisions. You focus on the business, we handle the engineering.",
-    },
-  ];
-
-  return (
-    <section
-      id="faq"
-      className="relative w-full flex flex-col justify-center py-8 border-b border-foreground/[0.35]"
-    >
-      <SectionHeader label="FAQ" />
-      <div className="w-full py-4">
-        <Accordion
-          type="single"
-          collapsible
-          className="w-full"
-          defaultValue="item-1"
-        >
-          {faqItems.map((item) => (
-            <AccordionItem
-              key={item.id}
-              value={item.id}
-              className="space-y-1.5 border-none py-1.5"
-            >
-              <AccordionTrigger className="group flex w-full justify-end py-0 hover:no-underline [&_svg]:hidden">
-                <div className="bg-accent text-[#0d0d0d] max-w-[85%] sm:max-w-[70%] md:max-w-[60%] cursor-pointer px-3 sm:px-4 py-2.5 sm:py-3 text-left text-[14px] sm:text-[15px] transition-all duration-200">
-                  {item.question}
-                </div>
-              </AccordionTrigger>
-
-              <AccordionContent className="flex justify-start">
-                <div className="bg-foreground/[0.05] text-foreground/70 max-w-[85%] sm:max-w-[70%] md:max-w-[60%] px-3 sm:px-4 py-2.5 sm:py-3 text-[13px] sm:text-[14px] leading-[1.6]">
-                  {item.answer}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
-    </section>
-  );
-}
-
-function Attestations() {
-  return (
-    <section className="border-b border-foreground/[0.35]">
-      <SectionHeader label="Attestations" />
-
-      <div className="py-8 px-4">
-        <div className="mx-auto max-w-4xl border border-foreground/[0.35] bg-background p-8 md:p-10">
-          <p className="text-xl leading-relaxed text-foreground">
-            “Working with Zuolabs has been a really positive experience overall.
-            The team consistently showed professionalism, strong technical
-            knowledge, and a genuine willingness to understand our requirements
-            before implementing solutions.”
-          </p>
-
-          <div className="mt-8 flex items-center justify-between border-t border-foreground/[0.35] pt-5">
-            <div>
-              <h3 className="font-medium text-foreground">Debjeet Ghosh</h3>
-              <p className="text-sm text-muted-foreground">
-                6 Month Engagement
-              </p>
-            </div>
-
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              Verified Client
-            </span>
-          </div>
-        </div>
-      </div>
-      <div className="py-8 px-4">
-        <div className="mx-auto max-w-4xl border border-foreground/[0.35] bg-background p-8 md:p-10">
-          <p className="text-xl leading-relaxed text-foreground">
-            “they handled tasks
-            with good attention to detail and timely delivery. Instead of simply
-            completing assigned work, they often suggested practical
-            improvements and better approaches that helped improve the final
-            outcome of the project. Their ability to adapt quickly to feedback
-            and changing requirements made the entire collaboration much easier
-            and more efficient.”
-          </p>
-
-          <div className="mt-8 flex items-center justify-between border-t border-foreground/[0.35] pt-5">
-            <div>
-              <h3 className="font-medium text-foreground">Nikhil Joshi</h3>
-              <p className="text-sm text-muted-foreground">
-                4 Month Engagement
-              </p>
-            </div>
-
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              Verified Client
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Team() {
-  const members = [
-    {
-      name: "Sahil Nayak",
-      role: "Fullstack Engineer",
-      image: "https://avatars.githubusercontent.com/sahilnyk",
-      twitter: "https://x.com/sahilnyk",
-      bio: "built and maintained backend systems for production applications. familiar with cloud infrastructure, Docker, Kubernetes basics, and performance optimization. focused on writing reliable, scalable services and improving system stability.",
-    },
-    {
-      name: "Anshuman Praharaj",
-      role: "Fullstack Engineer",
-      image: "https://avatars.githubusercontent.com/u/103830605?v=4",
-      twitter: "https://x.com/anshumancdx",
-      bio: "full-stack generalist. ships features fast. from database queries to pixel-perfect UI. makes complex systems feel simple.",
-    },
-    {
-      name: "Aditya Petkar",
-      role: "AI Engineer",
-      image: "https://avatars.githubusercontent.com/u/183547965?v=4",
-      twitter: "https://x.com/AdityaPetk50536",
-      bio: "builds and integrates AI features for real-world applications. worked with RAG pipelines, LLM integrations, and basic agent workflows. focused on practical implementations and deployment-ready solutions",
-    },
-  ];
-
-  return (
-    <section id="team" className="border-b border-foreground/35">
-      <SectionHeader label="Small team high productive!" />
-      <div className="grid grid-cols-1 md:grid-cols-3">
-        {members.map((member, i) => (
-          <AnimateIn key={member.name} delay={i * 0.1}>
-            <div
-              className={`group ${i < 2 ? "border-r border-foreground/[0.35]" : ""} relative`}
-            >
-              <div className="aspect-square relative overflow-hidden">
-                <img
-                  alt={member.name}
-                  src={member.image}
-                  className="w-full h-full object-cover grayscale contrast-[1.15] group-hover:grayscale-[0.3] group-hover:contrast-100 transition-all duration-700 scale-100 group-hover:scale-[1.02]"
-                />
-                <div className="absolute inset-0 vertical-scan pointer-events-none" />
-                <div className="absolute inset-0 scan-lines pointer-events-none opacity-30" />
-                <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-[#0d0d0d] to-transparent" />
-
-                {/* Bio overlay on hover */}
-                <div className="absolute inset-0 bg-[#0d0d0d]/95 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
-                  <p className="text-[13px] md:text-[14px] text-foreground/80 leading-[1.7] text-center">
-                    {member.bio}
-                  </p>
-                </div>
-
-                <div className="absolute bottom-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 z-10">
-                  <a
-                    href={member.twitter}
-                    className="w-7 h-7 flex items-center justify-center border border-foreground/[0.35] text-foreground/60 hover:text-foreground hover:border-foreground/50 transition-all bg-[#0d0d0d]/60 backdrop-blur-sm"
-                  >
-                    <svg
-                      className="w-3 h-3"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                  </a>
-                  <a
-                    href={`mailto:${member.name.toLowerCase().split(" ")[0]}@zuolab.com`}
-                    className="w-7 h-7 flex items-center justify-center border border-foreground/[0.35] text-foreground/60 hover:text-foreground hover:border-foreground/50 transition-all bg-[#0d0d0d]/60 backdrop-blur-sm"
-                  >
-                    <svg
-                      className="w-3 h-3"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={1.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              <div className="p-5 border-t border-foreground/[0.35]">
-                <h4 className="text-[15px] font-medium mb-1" style={alphaLyrae}>
-                  {member.name}
-                </h4>
-                <p className="text-[10px] text-foreground/35 tracking-[0.1em]">
-                  {member.role}
-                </p>
-              </div>
-            </div>
-          </AnimateIn>
-        ))}
-      </div>
-    </section>
-  );
-}
+const testimonials = [
+  {
+    quote:
+      "Working with Zuolabs has been a really positive experience overall. The team consistently showed professionalism, strong technical knowledge, and a genuine willingness to understand our requirements before implementing solutions.",
+    author: "Debjeet Ghosh",
+    engagement: "6 Month Engagement",
+  },
+  {
+    quote:
+      "They handled tasks with good attention to detail and timely delivery. Instead of simply completing assigned work, they often suggested practical improvements and better approaches that helped improve the final outcome of the project. Their ability to adapt quickly to feedback and changing requirements made the entire collaboration much easier and more efficient.",
+    author: "Nikhil Joshi",
+    engagement: "4 Month Engagement",
+  },
+];
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-screen bg-[#0d0d0d] text-foreground flex flex-col">
       <SiteNav />
 
-      {/* Single container - border-x runs full height */}
-      <div className="w-full border-x border-foreground/[0.35] mt-11">
-        <Hero />
-        <Benefits />
-        <Work />
-        <FAQs />
-        <Attestations />
-        <Team />
-        <SiteFooter />
-      </div>
-    </>
+      <main className="flex-1 pt-14">
+        {/* HERO SECTION */}
+        <section className="border-b border-[#1e1e1e] px-6 py-24 md:py-36">
+          <div className="max-w-5xl mx-auto">
+            <SectionLabel label="Product Development & AI Engineering" className="mb-6" />
+
+            <h1
+              className="text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-foreground leading-[1.08] max-w-4xl"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              We design, build, and ship software that works.
+            </h1>
+
+            <p className="mt-8 text-lg sm:text-xl text-foreground/60 leading-relaxed max-w-2xl font-light">
+              ZuoLabs partners with founders and businesses to take products from technical
+              architecture to production — building AI-native applications, end-to-end
+              platforms, and scalable workflows.
+            </p>
+
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <a
+                href="https://cal.com/zuolabs/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3.5 bg-accent text-[#0d0d0d] font-mono text-xs uppercase tracking-[0.1em] font-medium hover:bg-accent/90 transition-colors"
+              >
+                Book a 30-min Call →
+              </a>
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center px-6 py-3.5 border border-[#2a2a2a] text-foreground/80 font-mono text-xs uppercase tracking-[0.1em] hover:border-foreground/50 hover:text-foreground transition-colors"
+              >
+                View Services
+              </Link>
+            </div>
+
+            {/* Quick Strip */}
+            <div className="mt-20 pt-8 border-t border-[#1a1a1a] flex flex-wrap items-center justify-between gap-6 text-xs font-mono uppercase tracking-[0.12em] text-foreground/40">
+              <span>Full-Stack Development</span>
+              <span className="hidden sm:inline text-foreground/20">/</span>
+              <span>AI Integration & RAG</span>
+              <span className="hidden sm:inline text-foreground/20">/</span>
+              <span>AI-Native Products</span>
+              <span className="hidden sm:inline text-foreground/20">/</span>
+              <span>Enterprise Modernization</span>
+            </div>
+          </div>
+        </section>
+
+        {/* WHAT WE DO / CAPABILITIES */}
+        <section className="border-b border-[#1e1e1e] px-6 py-20 md:py-28">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+              <div>
+                <SectionLabel label="Capabilities" className="mb-3" />
+                <h2
+                  className="text-3xl sm:text-4xl font-normal text-foreground"
+                  style={{ fontFamily: "var(--font-serif)" }}
+                >
+                  Engineering built for real production
+                </h2>
+              </div>
+              <Link
+                href="/services"
+                className="text-xs font-mono uppercase tracking-[0.12em] text-accent hover:underline flex items-center gap-1"
+              >
+                <span>Full services breakdown</span>
+                <span>→</span>
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+              {capabilities.map((cap) => (
+                <div key={cap.num} className="space-y-3">
+                  <span className="text-xs font-mono text-accent/70 tracking-widest block">
+                    {cap.num}
+                  </span>
+                  <h3 className="text-xl font-medium text-foreground tracking-tight">
+                    {cap.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-foreground/55">
+                    {cap.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PRODUCTS PREVIEW */}
+        <section className="border-b border-[#1e1e1e] px-6 py-20 md:py-28 bg-[#0a0a0a]">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+              <div>
+                <SectionLabel label="Products" className="mb-3" />
+                <h2
+                  className="text-3xl sm:text-4xl font-normal text-foreground"
+                  style={{ fontFamily: "var(--font-serif)" }}
+                >
+                  Software we build and operate
+                </h2>
+              </div>
+              <Link
+                href="/products"
+                className="text-xs font-mono uppercase tracking-[0.12em] text-accent hover:underline flex items-center gap-1"
+              >
+                <span>Explore all products</span>
+                <span>→</span>
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {productsPreview.map((prod) => (
+                <div
+                  key={prod.name}
+                  className="p-8 border border-[#1e1e1e] bg-[#0d0d0d] flex flex-col justify-between space-y-6"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono text-accent uppercase tracking-wider">
+                        {prod.tagline}
+                      </span>
+                      <span className="text-[11px] font-mono text-foreground/40 border border-[#222] px-2 py-0.5">
+                        {prod.status}
+                      </span>
+                    </div>
+                    <h3
+                      className="text-2xl font-medium text-foreground"
+                      style={{ fontFamily: "var(--font-serif)" }}
+                    >
+                      {prod.name}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-foreground/55">
+                      {prod.description}
+                    </p>
+                  </div>
+                  <div>
+                    <a
+                      href="https://cal.com/zuolabs/30min"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-foreground/75 hover:text-accent transition-colors"
+                    >
+                      <span>Inquire about {prod.name}</span>
+                      <span>→</span>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* HOW WE WORK / APPROACH */}
+        <section className="border-b border-[#1e1e1e] px-6 py-20 md:py-28">
+          <div className="max-w-5xl mx-auto">
+            <SectionLabel label="How We Work" className="mb-4" />
+            <h2
+              className="text-3xl sm:text-4xl font-normal text-foreground mb-16 max-w-xl"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              Direct engineering, zero administrative bloat
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              <div className="space-y-3">
+                <span className="text-xs font-mono text-foreground/35 uppercase tracking-widest block">
+                  Phase 01
+                </span>
+                <h3 className="text-lg font-medium text-foreground">
+                  Architecture & Scope
+                </h3>
+                <p className="text-sm text-foreground/55 leading-relaxed">
+                  We clarify goals, define constraints, and select the optimal technical
+                  stack before writing code. You get architectural clarity, not vague estimates.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <span className="text-xs font-mono text-foreground/35 uppercase tracking-widest block">
+                  Phase 02
+                </span>
+                <h3 className="text-lg font-medium text-foreground">
+                  Sprint & Deploy
+                </h3>
+                <p className="text-sm text-foreground/55 leading-relaxed">
+                  Rapid weekly increments shipped straight to staging and production. You communicate
+                  directly with the engineers who write the code.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <span className="text-xs font-mono text-foreground/35 uppercase tracking-widest block">
+                  Phase 03
+                </span>
+                <h3 className="text-lg font-medium text-foreground">
+                  Handover or Scale
+                </h3>
+                <p className="text-sm text-foreground/55 leading-relaxed">
+                  Clean repositories, thorough documentation, and zero vendor lock-in.
+                  We hand off cleanly to your team or continue supporting feature growth.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* VERIFIED ATTESTATIONS / TESTIMONIALS */}
+        <section className="border-b border-[#1e1e1e] px-6 py-20 md:py-28 bg-[#0a0a0a]">
+          <div className="max-w-5xl mx-auto">
+            <SectionLabel label="Attestations" className="mb-4" />
+            <h2
+              className="text-3xl sm:text-4xl font-normal text-foreground mb-16"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              Feedback from client engagements
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              {testimonials.map((t, idx) => (
+                <div
+                  key={idx}
+                  className="p-8 border border-[#1e1e1e] bg-[#0d0d0d] flex flex-col justify-between space-y-6"
+                >
+                  <blockquote className="text-foreground/80 text-[15px] leading-relaxed italic">
+                    “{t.quote}”
+                  </blockquote>
+                  <div className="pt-4 border-t border-[#1e1e1e] flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-foreground">{t.author}</p>
+                      <p className="text-xs text-foreground/45 font-mono">{t.engagement}</p>
+                    </div>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-accent/80 border border-accent/20 px-2 py-0.5">
+                      Verified Client
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* BOTTOM CTA */}
+        <section className="px-6 py-24 md:py-32">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2
+              className="text-4xl sm:text-5xl font-normal text-foreground"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              Ready to ship your next product?
+            </h2>
+            <p className="text-foreground/60 text-base max-w-xl mx-auto leading-relaxed">
+              Schedule a 30-minute introductory conversation with our engineering team to
+              discuss architecture, timeline, and execution.
+            </p>
+            <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="https://cal.com/zuolabs/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3.5 bg-accent text-[#0d0d0d] font-mono text-xs uppercase tracking-[0.1em] font-medium hover:bg-accent/90 transition-colors"
+              >
+                Book a 30-min Call →
+              </a>
+              <a
+                href="mailto:founders@zuolabs.com"
+                className="px-6 py-3.5 border border-[#2a2a2a] text-foreground/80 font-mono text-xs uppercase tracking-[0.1em] hover:border-foreground/50 hover:text-foreground transition-colors"
+              >
+                founders@zuolabs.com
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter />
+    </div>
   );
 }
