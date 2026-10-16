@@ -24,36 +24,7 @@ function RedirectNotice({ onNotice }: { onNotice: (msg: string) => void }) {
   return null;
 }
 
-function ZuoLogo() {
-  return (
-    <div className="flex items-center gap-2">
-      <svg
-        className="h-5 w-5"
-        viewBox="0 0 36 36"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          x="1"
-          y="1"
-          width="34"
-          height="34"
-          stroke="currentColor"
-          strokeWidth="1"
-        />
-        <path
-          d="M9 11h18L9 25h18"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="square"
-        />
-      </svg>
-      <span className="text-[13px] tracking-[0.05em]" style={alphaLyrae}>
-        Zuo<span className="text-[#6366f1]">lab</span>
-      </span>
-    </div>
-  );
-}
+import { ZuoLogo } from "@/components/ui/zuo-logo";
 
 function LoginForm() {
   const router = useRouter();
