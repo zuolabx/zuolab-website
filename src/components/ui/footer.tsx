@@ -10,8 +10,7 @@ export function SiteFooter() {
           <div className="md:col-span-5 space-y-4">
             <ZuoLogo />
             <p className="text-[14px] leading-relaxed text-foreground/50 max-w-sm">
-              Product development agency specializing in end-to-end engineering,
-              AI integration, and shipping software products for founders and businesses.
+              We build software products and integrate AI into existing business workflows for founders and companies.
             </p>
             <div className="pt-2">
               <a
@@ -122,7 +121,7 @@ export function SiteFooter() {
         <div className="mt-14 pt-6 border-t border-[#1e1e1e] flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-foreground/40 font-mono">
           <p>© 2026 ZuoLabs. All rights reserved.</p>
           <p className="text-foreground/30 text-xs">
-            Software built to ship and scale.
+            Software built for real workloads.
           </p>
         </div>
       </div>
