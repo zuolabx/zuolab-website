@@ -48,19 +48,7 @@ const services = [
       "Product-led growth strategy",
     ],
   },
-  {
-    num: "04",
-    title: "Embedded Engineering Talent",
-    tag: "Dedicated Team",
-    description:
-      "Senior engineers who join your team directly. We integrate into your GitHub repositories, Slack channels, and daily stand-ups without lengthy onboarding.",
-    capabilities: [
-      "Dedicated senior engineers",
-      "Full-stack, AI, mobile, and backend",
-      "Flexible engagement models",
-      "Direct integration into daily stand-ups",
-    ],
-  },
+  
 ];
 
 const processSteps = [
