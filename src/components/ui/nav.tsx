@@ -20,12 +20,13 @@ export function SiteNav() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0d0d0d]/90 backdrop-blur-md border-b border-[#1e1e1e]">
       <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
         {/* Logo */}
-        <ZuoLogo />
+        <h1 className="font-bold">Zuolabs</h1>
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href || pathname?.startsWith(`${link.href}/`);
+            const isActive =
+              pathname === link.href || pathname?.startsWith(`${link.href}/`);
             return (
               <Link
                 key={link.href}
@@ -90,14 +91,17 @@ export function SiteNav() {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-[#1e1e1e] bg-[#0d0d0d]/98 px-6 py-5 flex flex-col gap-4">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href || pathname?.startsWith(`${link.href}/`);
+            const isActive =
+              pathname === link.href || pathname?.startsWith(`${link.href}/`);
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`text-[15px] py-1 transition-colors ${
-                  isActive ? "text-foreground font-medium" : "text-foreground/60 hover:text-foreground"
+                  isActive
+                    ? "text-foreground font-medium"
+                    : "text-foreground/60 hover:text-foreground"
                 }`}
               >
                 {link.label}
