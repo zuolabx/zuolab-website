@@ -5,7 +5,7 @@ import { SectionLabel } from "@/components/ui/section-label";
 export const metadata = {
   title: "Services | ZuoLabs",
   description:
-    "Software product development, AI integrations, enterprise SAP ABAP, Android development, and embedded engineering teams.",
+    "Software product development, AI integrations, Android development, and embedded engineering teams.",
 };
 
 const services = [
@@ -24,19 +24,6 @@ const services = [
   },
   {
     num: "02",
-    title: "SAP ABAP & Enterprise Systems",
-    tag: "Enterprise Engineering",
-    description:
-      "Deep SAP ABAP expertise for custom module development, legacy system migration, and enterprise workflow integration. We write maintainable ABAP code that connects with your existing SAP landscape.",
-    capabilities: [
-      "Custom ABAP module development",
-      "SAP ERP and S/4HANA integration",
-      "Legacy migration and refactoring",
-      "BAPI, RFC, and IDoc development",
-    ],
-  },
-  {
-    num: "03",
     title: "Android Development",
     tag: "Mobile Engineering",
     description:
@@ -49,7 +36,7 @@ const services = [
     ],
   },
   {
-    num: "04",
+    num: "03",
     title: "GTM Strategy & Growth",
     tag: "Go-to-Market",
     description:
@@ -62,7 +49,7 @@ const services = [
     ],
   },
   {
-    num: "05",
+    num: "04",
     title: "Embedded Engineering Talent",
     tag: "Dedicated Team",
     description:
