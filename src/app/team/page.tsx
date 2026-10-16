@@ -3,9 +3,9 @@ import { SiteFooter } from "@/components/ui/footer";
 import { SectionLabel } from "@/components/ui/section-label";
 
 export const metadata = {
-  title: "Team — ZuoLabs",
+  title: "Team | ZuoLabs",
   description:
-    "Meet the engineering team behind ZuoLabs — Sahil Nayak and Anshuman Praharaj.",
+    "Meet the engineering team behind ZuoLabs: Sahil Nayak and Anshuman Praharaj.",
 };
 
 const founders = [
@@ -14,14 +14,14 @@ const founders = [
     role: "Fullstack Engineer & Co-Founder",
     image: "https://avatars.githubusercontent.com/sahilnyk",
     twitter: "https://x.com/sahilnyk",
-    bio: "Built and maintained backend systems for production applications. Experienced with cloud infrastructure, Docker, container orchestration, and performance optimization. Focused on writing reliable, scalable services and resilient system architecture.",
+    bio: "Builds and maintains backend systems and cloud infrastructure. Experienced with Docker, container orchestration, and performance optimization. Focuses on writing reliable services and resilient system architecture.",
   },
   {
     name: "Anshuman Praharaj",
     role: "Fullstack Engineer & Co-Founder",
     image: "https://avatars.githubusercontent.com/u/103830605?v=4",
     twitter: "https://x.com/anshumancdx",
-    bio: "Full-stack generalist with a focus on shipping fast and reliably. From database schema design to responsive, accessible UI implementation, transforming complex system requirements into seamless, intuitive applications.",
+    bio: "Full-stack engineer focused on shipping reliable software quickly. Works across database schema design, backend APIs, and responsive, accessible user interfaces.",
   },
 ];
 
@@ -44,8 +44,8 @@ export default function TeamPage() {
               <span className="text-foreground/45">High output.</span>
             </h1>
             <p className="mt-6 text-foreground/60 text-lg leading-relaxed max-w-2xl font-light">
-              Founding engineers who care obsessively about craft, speed, and the code
-              that outlives the sprint.
+              Engineers who care about solid architecture, fast execution, and
+              writing maintainable code.
             </p>
           </div>
         </section>
@@ -91,7 +91,11 @@ export default function TeamPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-xs font-mono text-foreground/50 hover:text-foreground transition-colors"
                   >
-                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-3.5 h-3.5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                     <span>Twitter / X</span>
@@ -112,17 +116,20 @@ export default function TeamPage() {
         {/* Philosophy Strip */}
         <section className="px-6 py-20 md:py-28">
           <div className="max-w-4xl mx-auto space-y-8 text-center">
-            <SectionLabel label="Engineering Values" className="justify-center" />
+            <SectionLabel
+              label="Engineering Values"
+              className="justify-center"
+            />
             <h3
               className="text-3xl sm:text-4xl font-normal text-foreground"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Direct communication, deep technical accountability
+              Direct communication, direct technical accountability
             </h3>
             <p className="text-foreground/60 text-base max-w-2xl mx-auto leading-relaxed">
-              When you work with ZuoLabs, there are no account managers, outsourced junior developers,
-              or relay communication delays. You collaborate directly with the engineers designing and
-              shipping your software.
+              When you work with ZuoLabs, there are no intermediate layers or
+              outsourced handoffs. You collaborate directly with the engineers
+              designing and building your software.
             </p>
             <div className="pt-2">
               <a
@@ -131,7 +138,7 @@ export default function TeamPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-6 py-3.5 bg-accent text-[#0d0d0d] font-mono text-xs uppercase tracking-[0.1em] font-medium hover:bg-accent/90 transition-colors"
               >
-                Speak Directly with Us →
+                Speak Directly with Us
               </a>
             </div>
           </div>
