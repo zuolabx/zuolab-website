@@ -15,12 +15,7 @@ const services = [
     tag: "AI & Workflows",
     description:
       "We design and deploy AI systems that run in production. This includes RAG pipelines, fine-tuned models, and task-specific automations that work reliably under real user load.",
-    capabilities: [
-      "RAG and semantic search pipelines",
-      "Model fine-tuning and evaluation",
-      "Automated task and decision workflows",
-      "AI-native application architecture",
-    ],
+    
   },
   {
     num: "02",
@@ -28,12 +23,7 @@ const services = [
     tag: "Mobile Engineering",
     description:
       "Native Android applications built with Kotlin and Jetpack Compose. We design for offline reliability, fast performance, and stable releases on the Google Play Store.",
-    capabilities: [
-      "Kotlin and Jetpack Compose",
-      "Offline-first architecture",
-      "Backend and cloud integration",
-      "Play Store deployment and testing",
-    ],
+    
   },
   {
     num: "03",
@@ -41,12 +31,7 @@ const services = [
     tag: "Go-to-Market",
     description:
       "Go-to-market strategy built specifically for software products and B2B platforms. We map your Ideal Customer Profile (ICP), sharpen product positioning, and establish reproducible acquisition channels.",
-    capabilities: [
-      "ICP definition and segmentation",
-      "Positioning and messaging frameworks",
-      "Content-led and outbound motions",
-      "Product-led growth strategy",
-    ],
+    
   },
   
 ];
@@ -131,22 +116,7 @@ export default function ServicesPage() {
                     {service.description}
                   </p>
 
-                  <div className="pt-2">
-                    <p className="text-xs font-mono uppercase tracking-[0.15em] text-foreground/40 mb-3">
-                      Key Deliverables & Focus
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {service.capabilities.map((cap, i) => (
-                        <div
-                          key={i}
-                          className="text-xs text-foreground/60 flex items-center gap-2 font-mono"
-                        >
-                          <span className="text-accent/60"> </span>
-                          <span>{cap}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             ))}
