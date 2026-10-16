@@ -7,9 +7,8 @@ import { ApiResponse } from "@/utils/ApiResponse";
 import { ApiError } from "@/utils/ApiError";
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET ?? "change-this-secret-in-production"
+  process.env.JWT_SECRET ?? "change-this-secret-in-production",
 );
-
 
 export async function POST(req: NextRequest) {
   await dbConnect();
@@ -28,7 +27,6 @@ export async function POST(req: NextRequest) {
       .select("+password");
 
     if (!user) {
-      
       throw new ApiError(401, "Invalid email or password.");
     }
 
@@ -40,7 +38,7 @@ export async function POST(req: NextRequest) {
     if (user.role !== RoleValues.ADMIN) {
       throw new ApiError(
         403,
-        "Access denied. You need to be an admin to access the dashboard."
+        "Access denied. You need to be an admin to access the dashboard.",
       );
     }
 
@@ -62,7 +60,7 @@ export async function POST(req: NextRequest) {
         data: { name: user.Name, email: user.email, role: user.role },
         message: "Login successful.",
       },
-      { status: 200 }
+      { status: 200 },
     );
 
     // HttpOnly cookie
@@ -84,11 +82,11 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// DELETE /api/admin  →  logout
+// DELETE /api/admin     logout
 export async function DELETE() {
   const response = NextResponse.json(
     { statuscode: 200, data: null, message: "Logged out." },
-    { status: 200 }
+    { status: 200 },
   );
   response.cookies.set("admin_token", "", { maxAge: 0, path: "/" });
   return response;
