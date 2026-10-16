@@ -3,23 +3,23 @@ import { SiteFooter } from "@/components/ui/footer";
 import { SectionLabel } from "@/components/ui/section-label";
 
 export const metadata = {
-  title: "Services — ZuoLabs",
+  title: "Services | ZuoLabs",
   description:
-    "End-to-end product development, AI engineering, enterprise SAP ABAP, Android development, and embedded engineering teams.",
+    "Software product development, AI integrations, enterprise SAP ABAP, Android development, and embedded engineering teams.",
 };
 
 const services = [
   {
     num: "01",
     title: "AI Engineering",
-    tag: "Intelligence Layer",
+    tag: "AI & Workflows",
     description:
-      "We design and deploy production-grade AI systems — RAG pipelines, agentic workflows, LLM fine-tuning, and custom model integrations. Not prototypes or fragile scripts, but reliable systems that run under real load for real users.",
+      "We design and deploy AI systems that run in production. This includes RAG pipelines, fine-tuned models, and task-specific automations that work reliably under real user load.",
     capabilities: [
-      "RAG & vector search pipelines",
-      "LLM fine-tuning & prompt engineering",
-      "Agentic workflow orchestration",
-      "AI-native product architecture",
+      "RAG and semantic search pipelines",
+      "Model fine-tuning and evaluation",
+      "Automated task and decision workflows",
+      "AI-native application architecture",
     ],
   },
   {
@@ -27,12 +27,12 @@ const services = [
     title: "SAP ABAP & Enterprise Systems",
     tag: "Enterprise Engineering",
     description:
-      "Deep SAP ABAP expertise for custom module development, legacy system migration, and enterprise workflow automation. We write clean, maintainable ABAP that integrates reliably with your existing SAP landscape.",
+      "Deep SAP ABAP expertise for custom module development, legacy system migration, and enterprise workflow integration. We write maintainable ABAP code that connects with your existing SAP landscape.",
     capabilities: [
       "Custom ABAP module development",
-      "SAP ERP / S/4HANA integration",
-      "Legacy migration & refactoring",
-      "BAPI, RFC & IDoc development",
+      "SAP ERP and S/4HANA integration",
+      "Legacy migration and refactoring",
+      "BAPI, RFC, and IDoc development",
     ],
   },
   {
@@ -40,12 +40,12 @@ const services = [
     title: "Android Development",
     tag: "Mobile Engineering",
     description:
-      "Native Android applications engineered for speed, offline reliability, and scale. Modern Kotlin-first architecture, Jetpack Compose UI, and rigorous device-level testing from architecture to Play Store release.",
+      "Native Android applications built with Kotlin and Jetpack Compose. We design for offline reliability, fast performance, and stable releases on the Google Play Store.",
     capabilities: [
-      "Kotlin & Jetpack Compose",
+      "Kotlin and Jetpack Compose",
       "Offline-first architecture",
-      "Backend & cloud integration",
-      "Play Store deployment & optimization",
+      "Backend and cloud integration",
+      "Play Store deployment and testing",
     ],
   },
   {
@@ -55,9 +55,9 @@ const services = [
     description:
       "Go-to-market strategy built specifically for software products and B2B platforms. We map your Ideal Customer Profile (ICP), sharpen product positioning, and establish reproducible acquisition channels.",
     capabilities: [
-      "ICP definition & segmentation",
-      "Positioning & messaging frameworks",
-      "Content-led & outbound motions",
+      "ICP definition and segmentation",
+      "Positioning and messaging frameworks",
+      "Content-led and outbound motions",
       "Product-led growth strategy",
     ],
   },
@@ -66,12 +66,12 @@ const services = [
     title: "Embedded Engineering Talent",
     tag: "Dedicated Team",
     description:
-      "Senior engineers embedded directly into your sprints. No prolonged onboarding delays — our engineers integrate into your GitHub repositories, Slack channels, and daily stand-ups immediately.",
+      "Senior engineers who join your team directly. We integrate into your GitHub repositories, Slack channels, and daily stand-ups without lengthy onboarding.",
     capabilities: [
       "Dedicated senior engineers",
-      "Full-stack, AI, mobile & backend",
+      "Full-stack, AI, mobile, and backend",
       "Flexible engagement models",
-      "Direct Slack & stand-up integration",
+      "Direct integration into daily stand-ups",
     ],
   },
 ];
@@ -81,7 +81,7 @@ const processSteps = [
     step: "01",
     title: "Technical Discovery & Architecture",
     description:
-      "We deep-dive into your constraints, existing data models, and business objectives. We outline concrete architecture decisions, milestones, and deliverables before coding begins.",
+      "We review your constraints, existing data models, and business objectives. We outline concrete architecture decisions, milestones, and deliverables before coding begins.",
   },
   {
     step: "02",
@@ -97,9 +97,9 @@ const processSteps = [
   },
   {
     step: "04",
-    title: "Seamless Handoff or Continuous Scale",
+    title: "Handoff or Ongoing Support",
     description:
-      "All intellectual property, documentation, CI/CD pipelines, and infrastructure belong to you. We can train your in-house team or continue providing scaling support.",
+      "All intellectual property, documentation, CI/CD pipelines, and infrastructure belong to you. We can hand off to your team or continue providing engineering support.",
   },
 ];
 
@@ -120,8 +120,8 @@ export default function ServicesPage() {
               Engineering you can ship.
             </h1>
             <p className="mt-6 text-foreground/60 text-lg leading-relaxed max-w-2xl font-light">
-              From production AI pipelines to enterprise SAP ABAP, native Android applications,
-              and dedicated engineering capacity — we build software that lasts.
+              We build custom software, integrate AI into existing products,
+              develop Android apps, and provide dedicated engineering capacity.
             </p>
           </div>
         </section>
@@ -136,7 +136,9 @@ export default function ServicesPage() {
               >
                 <div className="md:col-span-4 space-y-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono text-accent">{service.num}</span>
+                    <span className="text-xs font-mono text-accent">
+                      {service.num}
+                    </span>
                     <span className="text-xs font-mono text-foreground/40 uppercase tracking-widest">
                       {service.tag}
                     </span>
@@ -164,7 +166,7 @@ export default function ServicesPage() {
                           key={i}
                           className="text-xs text-foreground/60 flex items-center gap-2 font-mono"
                         >
-                          <span className="text-accent/60">→</span>
+                          <span className="text-accent/60"> </span>
                           <span>{cap}</span>
                         </div>
                       ))}
@@ -218,8 +220,9 @@ export default function ServicesPage() {
               Have a technical project in mind?
             </h2>
             <p className="text-foreground/60 text-base leading-relaxed">
-              Tell us about your product requirements, existing architecture, or team needs.
-              We&apos;ll respond with actionable technical feedback and an engagement proposal.
+              Tell us about your product requirements, existing architecture, or
+              team needs. We will respond with actionable technical feedback and
+              an engagement proposal.
             </p>
             <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
               <a
@@ -228,7 +231,7 @@ export default function ServicesPage() {
                 rel="noopener noreferrer"
                 className="px-6 py-3.5 bg-accent text-[#0d0d0d] font-mono text-xs uppercase tracking-[0.1em] font-medium hover:bg-accent/90 transition-colors"
               >
-                Book a Technical Call →
+                Book a Technical Call
               </a>
               <a
                 href="mailto:founders@zuolabs.com"
