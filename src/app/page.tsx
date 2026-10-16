@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/ui/footer";
 import { SectionLabel } from "@/components/ui/section-label";
 
 export const metadata = {
-  title: "ZuoLabs — Product Development & AI Engineering Agency",
+  title: "ZuoLabs | Software and AI Product Development",
   description:
     "We design, build, and ship software products, AI integrations, and AI-native applications for businesses and founders.",
 };
@@ -14,41 +14,41 @@ const capabilities = [
     num: "01",
     title: "AI Integration & Workflows",
     description:
-      "RAG pipelines, custom model integrations, and agentic workflows that solve real business problems — built to handle production workloads, not just demo scripts.",
+      "RAG pipelines, custom model integrations, and automated workflows designed to handle production workloads with real users.",
   },
   {
     num: "02",
-    title: "End-to-End Product Engineering",
+    title: "Full-Stack Product Engineering",
     description:
-      "From technical architecture and database modeling to responsive frontend interfaces and cloud deployments. We ship complete, production-ready software.",
+      "From technical architecture and database modeling to responsive frontend interfaces and cloud deployments. We ship complete, working software.",
   },
   {
     num: "03",
     title: "AI-Native Applications",
     description:
-      "Designing and engineering software built from the ground up around generative AI, intelligent search, and autonomous data processing.",
+      "Software designed from the ground up around large language models, semantic search, and automated data processing.",
   },
   {
     num: "04",
     title: "Architecture & Systems Modernization",
     description:
-      "Performance audits, API integrations, enterprise system connectivity (including SAP ABAP), and scalable refactoring for growing systems.",
+      "Performance audits, API integrations, enterprise system connectivity (including SAP ABAP), and code refactoring for growing systems.",
   },
 ];
 
 const productsPreview = [
   {
     name: "Raven",
-    tagline: "Headless AI Knowledge Engine",
+    tagline: "Knowledge Management Engine",
     description:
-      "Transforms scattered product documentation, internal wikis, and manuals into an intelligent teammate for employees and customers with vector retrieval and natural query handling.",
+      "A knowledge management engine that lets teams ask questions about their documentation, products, and codebases.",
     status: "Active Product",
   },
   {
     name: "Servio",
-    tagline: "Restaurant Operating System",
+    tagline: "Restaurant Management & POS",
     description:
-      "A unified platform combining table orders, kitchen display, real-time inventory tracking, payroll, and billing analytics into a streamlined interface.",
+      "A restaurant management and POS platform that helps restaurants manage orders and daily operations.",
     status: "Active Product",
   },
 ];
@@ -77,7 +77,10 @@ export default function Home() {
         {/* HERO SECTION */}
         <section className="border-b border-[#1e1e1e] px-6 py-24 md:py-36">
           <div className="max-w-5xl mx-auto">
-            <SectionLabel label="Product Development & AI Engineering" className="mb-6" />
+            <SectionLabel
+              label="Software & AI Product Development"
+              className="mb-6"
+            />
 
             <h1
               className="text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-foreground leading-[1.08] max-w-4xl"
@@ -87,9 +90,9 @@ export default function Home() {
             </h1>
 
             <p className="mt-8 text-lg sm:text-xl text-foreground/60 leading-relaxed max-w-2xl font-light">
-              ZuoLabs partners with founders and businesses to take products from technical
-              architecture to production — building AI-native applications, end-to-end
-              platforms, and scalable workflows.
+              We build software products for businesses and founders. We also
+              integrate AI into existing workflows and build AI-native
+              applications.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -99,7 +102,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3.5 bg-accent text-[#0d0d0d] font-mono text-xs uppercase tracking-[0.1em] font-medium hover:bg-accent/90 transition-colors"
               >
-                Book a 30-min Call →
+                Book a 30-min Call
               </a>
               <Link
                 href="/services"
@@ -140,7 +143,7 @@ export default function Home() {
                 className="text-xs font-mono uppercase tracking-[0.12em] text-accent hover:underline flex items-center gap-1"
               >
                 <span>Full services breakdown</span>
-                <span>→</span>
+                <span> </span>
               </Link>
             </div>
 
@@ -180,7 +183,7 @@ export default function Home() {
                 className="text-xs font-mono uppercase tracking-[0.12em] text-accent hover:underline flex items-center gap-1"
               >
                 <span>Explore all products</span>
-                <span>→</span>
+                <span> </span>
               </Link>
             </div>
 
@@ -217,7 +220,7 @@ export default function Home() {
                       className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-foreground/75 hover:text-accent transition-colors"
                     >
                       <span>Inquire about {prod.name}</span>
-                      <span>→</span>
+                      <span> </span>
                     </a>
                   </div>
                 </div>
@@ -234,7 +237,7 @@ export default function Home() {
               className="text-3xl sm:text-4xl font-normal text-foreground mb-16 max-w-xl"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Direct engineering, zero administrative bloat
+              Direct engineering without administrative overhead
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -246,8 +249,9 @@ export default function Home() {
                   Architecture & Scope
                 </h3>
                 <p className="text-sm text-foreground/55 leading-relaxed">
-                  We clarify goals, define constraints, and select the optimal technical
-                  stack before writing code. You get architectural clarity, not vague estimates.
+                  We clarify goals, define constraints, and select the technical
+                  stack before writing code. You get architectural clarity, not
+                  vague estimates.
                 </p>
               </div>
 
@@ -259,8 +263,8 @@ export default function Home() {
                   Sprint & Deploy
                 </h3>
                 <p className="text-sm text-foreground/55 leading-relaxed">
-                  Rapid weekly increments shipped straight to staging and production. You communicate
-                  directly with the engineers who write the code.
+                  Weekly increments shipped straight to staging and production.
+                  You communicate directly with the engineers writing the code.
                 </p>
               </div>
 
@@ -272,8 +276,9 @@ export default function Home() {
                   Handover or Scale
                 </h3>
                 <p className="text-sm text-foreground/55 leading-relaxed">
-                  Clean repositories, thorough documentation, and zero vendor lock-in.
-                  We hand off cleanly to your team or continue supporting feature growth.
+                  Clean repositories, clear documentation, and zero vendor
+                  lock-in. We hand off cleanly to your team or continue
+                  supporting feature growth.
                 </p>
               </div>
             </div>
@@ -302,8 +307,12 @@ export default function Home() {
                   </blockquote>
                   <div className="pt-4 border-t border-[#1e1e1e] flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-foreground">{t.author}</p>
-                      <p className="text-xs text-foreground/45 font-mono">{t.engagement}</p>
+                      <p className="text-sm font-medium text-foreground">
+                        {t.author}
+                      </p>
+                      <p className="text-xs text-foreground/45 font-mono">
+                        {t.engagement}
+                      </p>
                     </div>
                     <span className="text-[10px] font-mono uppercase tracking-widest text-accent/80 border border-accent/20 px-2 py-0.5">
                       Verified Client
@@ -325,8 +334,8 @@ export default function Home() {
               Ready to ship your next product?
             </h2>
             <p className="text-foreground/60 text-base max-w-xl mx-auto leading-relaxed">
-              Schedule a 30-minute introductory conversation with our engineering team to
-              discuss architecture, timeline, and execution.
+              Schedule a 30-minute introductory conversation with our
+              engineering team to discuss architecture, timeline, and execution.
             </p>
             <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
               <a
@@ -335,7 +344,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="px-6 py-3.5 bg-accent text-[#0d0d0d] font-mono text-xs uppercase tracking-[0.1em] font-medium hover:bg-accent/90 transition-colors"
               >
-                Book a 30-min Call →
+                Book a 30-min Call
               </a>
               <a
                 href="mailto:founders@zuolabs.com"
