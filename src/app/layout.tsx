@@ -3,22 +3,20 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "ZuoLabs — Product Development & AI Engineering Agency",
+    default: "ZuoLabs | Software and AI Product Development",
     template: "%s | ZuoLabs",
   },
   description:
-    "ZuoLabs is a product development agency specializing in end-to-end product development, AI integration into existing workflows, and building AI-native applications for founders and businesses.",
+    "ZuoLabs builds software products and integrates AI into existing workflows for businesses and founders.",
   keywords: [
     "ZuoLabs",
-    "product development agency",
+    "software development",
+    "product engineering",
     "AI engineering",
-    "AI native applications",
     "AI integration",
-    "end to end product development",
-    "custom software development",
-    "full-stack engineering",
+    "full-stack development",
     "RAG pipelines",
-    "B2B software agency",
+    "B2B software",
   ],
   authors: [{ name: "ZuoLabs", url: "https://zuolabs.com" }],
   creator: "ZuoLabs",
@@ -30,16 +28,16 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://zuolabs.com",
     siteName: "ZuoLabs",
-    title: "ZuoLabs — Product Development & AI Engineering Agency",
+    title: "ZuoLabs | Software and AI Product Development",
     description:
-      "End-to-end product development, AI integration, and AI-native applications for businesses and founders.",
+      "Software product development, AI workflow integration, and AI-native applications for businesses and founders.",
     locale: "en_US",
     images: [
       {
         url: "https://zuolabs.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ZuoLabs — Product Development & AI Engineering Agency",
+        alt: "ZuoLabs | Software and AI Product Development",
       },
     ],
   },
@@ -47,9 +45,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@zuolabs",
     creator: "@zuolabs",
-    title: "ZuoLabs — Product Development & AI Engineering Agency",
+    title: "ZuoLabs | Software and AI Product Development",
     description:
-      "End-to-end product development, AI integration, and AI-native applications for businesses and founders.",
+      "Software product development, AI workflow integration, and AI-native applications for businesses and founders.",
     images: ["https://zuolabs.com/og-image.png"],
   },
   robots: {
@@ -105,7 +103,7 @@ export default function RootLayout({
                 height: 630,
               },
               description:
-                "ZuoLabs is a product development agency specializing in end-to-end product development, AI integration, and AI-native applications.",
+                "ZuoLabs builds software products and integrates AI into existing workflows for businesses and founders.",
               sameAs: [
                 "https://x.com/zuolabs",
                 "https://github.com/zuolabx",
