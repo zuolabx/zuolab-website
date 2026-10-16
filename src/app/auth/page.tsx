@@ -177,7 +177,7 @@ function LoginForm() {
               className="w-full bg-[#6366f1] text-[#0d0d0d] py-2.5 text-[13px] tracking-[0.08em] hover:bg-[#6366f1]/90 disabled:opacity-40 transition-colors rounded-none cursor-pointer"
               style={alphaLyrae}
             >
-              {loading ? "Signing in…" : "Sign in →"}
+              {loading ? "Signing in…" : "Sign in  "}
             </button>
           </form>
 
