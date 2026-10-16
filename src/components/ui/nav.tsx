@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ZuoLogo } from "./zuo-logo";
+
 
 const navLinks = [
   { href: "/products", label: "Products" },
@@ -20,7 +20,7 @@ export function SiteNav() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0d0d0d]/90 backdrop-blur-md border-b border-[#1e1e1e]">
       <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
         {/* Logo */}
-        <h1 className="font-bold">Zuolabs</h1>
+        <Link href={"/"}><h1 className="font-bold">Zuolabs</h1></Link>
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center gap-8">
