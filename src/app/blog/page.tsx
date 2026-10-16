@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/ui/footer";
 import { SectionLabel } from "@/components/ui/section-label";
 
 export const metadata: Metadata = {
-  title: "Blog & Perspectives — ZuoLabs",
+  title: "Blog & Perspectives | ZuoLabs",
   description:
     "Engineering insights, backend architecture, AI workflows, and product design by the ZuoLabs team.",
 };
@@ -68,8 +68,8 @@ export default async function BlogPage() {
               Perspectives on building software that scales.
             </h1>
             <p className="mt-6 text-foreground/60 text-lg leading-relaxed max-w-xl font-light">
-              Engineering insights, system architecture notes, and AI integration practices
-              from the ZuoLabs team.
+              Engineering insights, system architecture notes, and AI
+              integration practices from the ZuoLabs team.
             </p>
           </div>
         </section>
@@ -123,7 +123,7 @@ export default async function BlogPage() {
                         <div className="pt-2">
                           <span className="text-xs font-mono uppercase tracking-wider text-accent group-hover:underline inline-flex items-center gap-1">
                             <span>Read article</span>
-                            <span>→</span>
+                            <span> </span>
                           </span>
                         </div>
                       </div>
