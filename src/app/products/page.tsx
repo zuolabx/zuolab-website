@@ -3,22 +3,22 @@ import { SiteFooter } from "@/components/ui/footer";
 import { SectionLabel } from "@/components/ui/section-label";
 
 export const metadata = {
-  title: "Products — ZuoLabs",
+  title: "Products | ZuoLabs",
   description:
-    "Software products engineered and operated by ZuoLabs — Raven AI Knowledge Engine and Servio Restaurant Operating System.",
+    "Software products built and maintained by ZuoLabs, including Raven and Servio.",
 };
 
 const products = [
   {
     num: "01",
     name: "Raven",
-    tagline: "Headless AI Knowledge Engine",
+    tagline: "Knowledge Management Engine",
     description:
-      "A headless AI knowledge engine that transforms complex technical documentation, internal wikis, and customer support databases into an intelligent queryable teammate. Instead of searching across tabs, booking meetings, or filing tickets, teams and customers get instant, accurate, source-attributed answers.",
+      "A knowledge management engine that lets teams ask questions about their documentation, products, and codebases.",
     capabilities: [
       "Natural language understanding and hybrid vector search",
-      "Robust RAG architecture with provenance and source citations",
-      "Headless API designed for custom UI integration and Slack bots",
+      "RAG architecture with source citations",
+      "Headless API for custom web interfaces and Slack bots",
       "Continuous synchronization with Notion, GitHub, and internal data stores",
     ],
     status: "Active Product",
@@ -26,13 +26,13 @@ const products = [
   {
     num: "02",
     name: "Servio",
-    tagline: "Modern Restaurant Operating System",
+    tagline: "Restaurant Management & POS",
     description:
-      "A unified operating system built for hospitality operators. Servio connects floor ordering, kitchen display workflows (KDS), stock tracking, employee payroll, and billing analytics into a single synchronized platform, eliminating fragmentation across point-of-sale systems.",
+      "A restaurant management and POS platform that helps restaurants manage orders and daily operations.",
     capabilities: [
-      "Multi-terminal floor ordering with instant kitchen synchronization",
+      "Table and counter ordering with kitchen display system (KDS) sync",
       "Live ingredient-level inventory tracking and low-stock alerts",
-      "Integrated employee time-tracking, role management, and payroll exports",
+      "Integrated employee time tracking, role management, and payroll exports",
       "Real-time revenue, margins, and operational performance dashboards",
     ],
     status: "Active Product",
@@ -56,8 +56,8 @@ export default function ProductsPage() {
               Software we design, build, and operate.
             </h1>
             <p className="mt-6 text-foreground/60 text-lg leading-relaxed max-w-2xl font-light">
-              Alongside our client engineering engagements, ZuoLabs conceives and maintains
-              specialized software products addressing complex domain problems.
+              Alongside our client work, we build and maintain our own software
+              products.
             </p>
           </div>
         </section>
@@ -72,7 +72,9 @@ export default function ProductsPage() {
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#1e1e1e]">
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-accent">{product.num}</span>
+                    <span className="text-xs font-mono text-accent">
+                      {product.num}
+                    </span>
                     <h2
                       className="text-3xl sm:text-4xl font-normal text-foreground"
                       style={{ fontFamily: "var(--font-serif)" }}
@@ -102,7 +104,7 @@ export default function ProductsPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center px-5 py-2.5 bg-accent text-[#0d0d0d] font-mono text-xs uppercase tracking-[0.1em] font-medium hover:bg-accent/90 transition-colors"
                       >
-                        Inquire about {product.name} →
+                        Inquire about {product.name}
                       </a>
                     </div>
                   </div>
@@ -113,8 +115,11 @@ export default function ProductsPage() {
                     </p>
                     <ul className="space-y-3">
                       {product.capabilities.map((cap, i) => (
-                        <li key={i} className="text-xs text-foreground/70 flex items-start gap-2.5 leading-relaxed">
-                          <span className="text-accent shrink-0 mt-0.5">—</span>
+                        <li
+                          key={i}
+                          className="text-xs text-foreground/70 flex items-start gap-2.5 leading-relaxed"
+                        >
+                          <span className="text-accent shrink-0 mt-0.5"> </span>
                           <span>{cap}</span>
                         </li>
                       ))}
@@ -133,10 +138,11 @@ export default function ProductsPage() {
               className="text-3xl sm:text-4xl font-normal text-foreground"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Interested in deploying our products or building your own?
+              Interested in using our products or building your own?
             </h3>
             <p className="text-foreground/60 text-base max-w-xl mx-auto">
-              We work with founders and enterprise teams to adapt our engines or engineer bespoke systems from scratch.
+              We help teams deploy our software or build custom applications
+              suited to their needs.
             </p>
             <div className="pt-2">
               <a
@@ -145,7 +151,7 @@ export default function ProductsPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-6 py-3 bg-accent text-[#0d0d0d] font-mono text-xs uppercase tracking-[0.1em] font-medium hover:bg-accent/90 transition-colors"
               >
-                Schedule an Architecture Call →
+                Schedule an Architecture Call
               </a>
             </div>
           </div>
