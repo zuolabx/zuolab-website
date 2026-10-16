@@ -42,7 +42,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const blog = await getBlogBySlug(slug);
 
-  if (!blog) return { title: "Post not found — ZuoLabs" };
+  if (!blog) return { title: "Post not found | ZuoLabs" };
 
   const excerpt = blog.content
     .replace(/[#*`>\-_\[\]()!]/g, "")
@@ -50,7 +50,7 @@ export async function generateMetadata({
     .slice(0, 160);
 
   return {
-    title: `${blog.title} — ZuoLabs`,
+    title: `${blog.title} | ZuoLabs`,
     description: excerpt,
     openGraph: {
       title: blog.title,
@@ -166,7 +166,8 @@ export default async function BlogPostPage({
                 Building an AI product or complex web application?
               </p>
               <p className="text-xs text-foreground/50 mt-1">
-                We design and ship production-grade software with rapid turnaround.
+                We build and ship software designed to run reliably in
+                production.
               </p>
             </div>
             <a
@@ -175,7 +176,7 @@ export default async function BlogPostPage({
               rel="noopener noreferrer"
               className="px-5 py-2.5 bg-accent text-[#0d0d0d] font-mono text-xs uppercase tracking-[0.1em] font-medium hover:bg-accent/90 transition-colors whitespace-nowrap"
             >
-              Book a Call →
+              Book a Call
             </a>
           </div>
         </section>
